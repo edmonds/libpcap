@@ -1,0 +1,211 @@
+libpcap0.8 (0.8.3-1) unstable; urgency=low
+
+  * New upstream release (closes: #235155).
+    + bpf_filter.c now has config.h (closes: #171210).
+    + Does not ship CVS directories anymore (closes: #119750).
+    + Has improved "truncated file" messages (closes: #207535).
+  * New source package to ease the 0.7 -> 0.8 transition, each source
+    package builds corresponding libpcap0.x{,-dev} binary packages.  The
+    libpcap-dev package is provided by libpcap0.7 for now.
+  * debian/copyright: Rewrite.  Licensing information is now complete in
+    the upstream tarball.
+  * debian/control: 
+    + Update source and binary package names.
+    + Build-Depend on dpatch, perl.
+    + Bump Standards-Version to 3.6.1.0.
+  * debian/rules:
+    + Clean up CFLAGS handling.
+    + Support DEB_BUILD_OPTIONS.
+    + Use dpatch for patch management.
+    + Compute major/minor versions from the changelog instead of
+      hardcoding them.
+  * debian/patches: New directory.
+  * debian/patches/10_shared_lib.dpatch: Patch split off the Debian diff 
+    to build a shared library (upstream does not support it).
+  * debian/patches/20_mac_syntax.dpatch: Patch split off the Debian diff 
+    to support more MAC address syntaxes (by Torsten Landschoff).
+  * debian/patches/00list: New file (patch list).
+
+ -- Romain Francoise <rfrancoise@debian.org>  Fri, 30 Apr 2004 16:14:10 +0200
+
+libpcap (0.7.2-5) unstable; urgency=low
+
+  * debian/rules: Update version variables, this is version 0.7.2.
+  * Makefile.in: Fix version.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Tue, 11 Nov 2003 12:14:28 +0100
+
+libpcap (0.7.2-4) unstable; urgency=low
+
+  * debian/libpcap-dev.preinst: New file.  Remove old symlink from
+    /usr/share/doc/libpcap-dev to libpcap0 since we now have a real
+    libpcap-dev directory.  Closes: #175742.
+  * debian/rules: Add -A flag to dh_installdocs so that it acts on all
+    binary packages.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Mon, 20 Oct 2003 18:49:22 +0200
+
+libpcap (0.7.2-3) unstable; urgency=low
+
+  * debian/control: libpcap-dev is in section libdevel, not in section
+    devel.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 19 Oct 2003 19:22:12 +0200
+
+libpcap (0.7.2-2) unstable; urgency=low
+
+  * debian/control: 
+    + Adding myself as co-maintainer, with Torsten's blessing.
+    + Repeat extended description in libpcap-dev description
+      (closes: #209728)
+    + Remove Emacs-style <URL: ...> markers from the descriptions.
+      (closes: #196727).
+    + Remove full stops from synopsis as per Policy.
+    + Add versioned build-dependency on debhelper (>= 4).
+  * debian/copyright: Remove dh-make boilerplates.
+  * debian/compat: New file.
+  * debian/rules: Remove obsolete DH_COMPAT variable.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 19 Oct 2003 18:17:41 +0200
+
+libpcap (0.7.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Torsten Landschoff <torsten@debian.org>  Sat,  7 Jun 2003 22:57:55 +0200
+
+libpcap (0.7.1-1) unstable; urgency=low
+
+  * New upstream release (closes: #145538).
+  * debian/rules: Build the library with _FILE_OFFSET_BITS set to 64
+    to allow for files bigger than 2GB (closes: #129213).
+  * Rename the library package to libpcap0.7 and change the SONAME so that we
+    can account for interface changes (closes: #132359).
+  * Run ldconfig as appropriate (lintian).
+  * Remove watch.ex template and the silly symlink from libpcap-dev's 
+    documentation to libpcap0 (lintian).
+
+ -- Torsten Landschoff <torsten@debian.org>  Sat,  3 Aug 2002 23:33:56 +0200
+
+libpcap (0.6.2-2) unstable; urgency=low
+
+  * debian/control: Change section of libpcap0 from net to libs
+    (Debian installer message).
+  * aclocal.m4: Treat the ia64 as a cpu which can't handle unaligned 
+    memory access (closes: #112152). Thanks for the report go to 
+    John R. Daily.
+
+ -- Torsten Landschoff <torsten@debian.org>  Fri, 14 Sep 2001 10:15:52 +0200
+
+libpcap (0.6.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control: Removed Build-Depends already satisfied by the
+    build-essential package.
+  * gencode.c (gen_scode): Add the missing default branch of the protocol
+    family switch (closes: 88688).
+  * debian/libpcap.post{rm,inst}: Run ldconfig (lintian).
+  * debian/copyright: Fix the "similiar" typo (lintian).
+
+ -- Torsten Landschoff <torsten@debian.org>  Tue,  6 Mar 2001 04:27:27 +0100
+
+libpcap (0.6.1-2) unstable; urgency=low
+
+  * debian/rules: Changed the shlibs info so that only pcap 0.6
+    is okay for packages linked against this version.
+
+ -- Torsten Landschoff <torsten@debian.org>  Thu, 18 Jan 2001 01:13:20 +0100
+
+libpcap (0.6.1-1) unstable; urgency=low
+
+  * Taking back the package. Kudos to Anand for helping out.
+  * debian/rules: Pass --enable-ipv6 to configure (closes: #80223).
+
+ -- Torsten Landschoff <torsten@debian.org>  Tue, 16 Jan 2001 15:40:37 +0100
+
+libpcap (0.5.2-2) unstable; urgency=low
+
+  * Update config.guess and config.sub (Closes #26031)
+  * Source builds would not always work. Fix that.
+  * Kernel interface problem is really a module not loaded problem. 
+    Note this in README.Debian. (Closes #21356)
+
+ -- Anand Kumria <wildfire@progsoc.org>  Tue, 28 Nov 2000 02:03:25 +1100
+
+libpcap (0.5.2-1) unstable; urgency=low
+
+  * New upstream release
+  * New maintainer
+  * Migrate to Debhelper and insert Build-Depends
+
+ -- Anand Kumria <wildfire@progsoc.org>  Sun, 12 Nov 2000 03:19:44 +1100
+
+libpcap (0.4a6-3) unstable; urgency=low
+
+  * New maintainer.
+  * scanner.l: Allow a 12 digit hex number as ether address as well as 
+    BB.BB.BB.BB.BB.BB (closes: #48735)
+  * nametoaddr.c (pcap_ether_aton): Adjust for change in scanner.l
+
+ -- Torsten Landschoff <torsten@debian.org>  Mon, 22 Nov 1999 02:39:45 +0100
+
+libpcap (0.4a6-2.1) unstable; urgency=low
+
+  * Non maintainer upload.
+    config.{guess,sub} changed to recognize a Arm architecture.
+
+ -- Turbo Fredriksson <turbo@debian.org>  Thu, 20 Aug 1998 23:12:36 -0400
+
+libpcap (0.4a6-2) frozen unstable; urgency=low
+
+  * renamed /usr/doc/libpcap to /usr/doc/libpcap0 (should fix several
+    lintian warnings)
+  * updated standards-version
+  * rebuild with latest debmake
+
+ -- Peter Tobias <tobias@et-inf.fho-emden.de>  Mon, 30 Mar 1998 00:46:44 +0200
+
+
+libpcap (0.4a6-1) unstable; urgency=low
+
+  * upgraded to latest upstream version, fixes: Bug#17164
+  * added patch from Michael Alan Dorman <mdorman@mdorman.law.miami.edu>
+    for building libpcap on alpha systems, fixes: Bug#15556
+  * fixed aclocal.m4 script
+
+ -- Peter Tobias <tobias@et-inf.fho-emden.de>  Sat, 31 Jan 1998 23:19:42 +0100
+
+
+libpcap (0.4a2-2) unstable; urgency=low
+
+  * fixed detection of IFF_LOOPBACK for linux systems
+  * link shared library with -l
+
+ -- Peter Tobias <tobias@et-inf.fho-emden.de>  Wed, 19 Nov 1997 23:44:34 +0100
+
+
+libpcap (0.4a2-1) unstable; urgency=low
+
+  * new maintainer
+  * latest upstream release
+  * libc6 version
+  * compiled with _REENTRANT
+
+ -- Peter Tobias <tobias@et-inf.fho-emden.de>  Wed, 17 Sep 1997 20:40:01 +0200
+
+
+libpcap (0.3.1a3-1) unstable; urgency=low
+
+  * Latest upstream release.  Fixes bug #6670.
+
+ -- Karl Sackett <krs@debian.org>  Wed, 2 Apr 1997 10:19:28 -0600
+
+
+libpcap (0.3-1) unstable; urgency=low
+
+  * First Debian release.
+  * Makefile.in: supports libpcap.so target.
+
+ -- Karl Sackett <krs@debian.org>  Wed, 8 Jan 1997 09:38:31 -0600
+
+

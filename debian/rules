@@ -1,0 +1,81 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpatch/dpatch.make
+
+version := $(shell head -1 debian/changelog | \
+	perl -nle 'm/\S+\s+\((\S+)-\S+\)/ and print $$1')
+major := $(shell head -1 debian/changelog | perl -nle \
+	'm/\S+\s+\((\d\.\d)\.\d+-\S+\)/ and print $$1')
+
+export CFLAGS=-D_FILE_OFFSET_BITS=64
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+        CFLAGS += -O0
+endif
+
+build: patch build-stamp
+build-stamp:
+	dh_testdir
+
+	./configure --prefix=/usr \
+		--mandir=\$${prefix}/share/man \
+		--enable-ipv6 --infodir=\$${prefix}/share/info
+	$(MAKE)
+
+	touch build-stamp
+
+clean: clean-patched unpatch
+clean-patched:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+
+	-$(MAKE) distclean
+
+	rm -f net
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	$(MAKE) install prefix=`pwd`/debian/libpcap0.8-dev/usr
+
+binary-indep: build install
+# We have nothing to do by default.
+
+binary-arch: build install
+#	dh_testversion
+	dh_testdir
+	dh_testroot
+        #
+        # build libpcap${major} package by moving files from libpcap0.8-dev
+        #
+	dh_movefiles -plibpcap$(major) --sourcedir=debian/libpcap0.8-dev \
+		usr/lib/libpcap.so.$(major)        \
+		usr/lib/libpcap.so.$(version)
+
+#	dh_installdebconf	
+	dh_installdocs -A debian/README.Debian
+	dh_installexamples
+	dh_installmenu
+	dh_installmanpages -plibpcap0.8-dev
+	dh_installinfo
+#	dh_undocumented
+	dh_installchangelogs CHANGES
+	dh_link -plibpcap0.8-dev
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps 
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

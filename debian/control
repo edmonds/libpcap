@@ -1,0 +1,44 @@
+Source: libpcap0.8
+Section: devel
+Priority: optional
+Maintainer: Torsten Landschoff <torsten@debian.org>
+Uploaders: Romain Francoise <rfrancoise@debian.org>
+Build-Depends: debhelper (>= 4), flex, bison, dpatch, perl
+Standards-Version: 3.6.1.0
+
+Package: libpcap0.8-dev
+Section: libdevel
+Architecture: any
+Depends: libpcap0.8 (= ${Source-Version}), libc6-dev
+Conflicts: libpcap-dev
+Description: Development library and header files for libpcap 0.8
+ Headers, static libraries, and documentation for the libpcap library.
+ .
+ libpcap (Packet CAPture) provides a portable framework for low-level
+ network monitoring.  Applications include network statistics
+ collection, security monitoring, network debugging, etc.
+ .
+ Since almost every system vendor provides a different interface for 
+ packet capture, and since there are several tools that require this 
+ functionality, we've created this system-independent API to ease in 
+ porting and to alleviate the need for several system-dependent packet 
+ capture modules in each application.
+ .
+ Further information is available at http://www.tcpdump.org/
+
+Package: libpcap0.8
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: System interface for user-level packet capture
+ libpcap (Packet CAPture) provides a portable framework for low-level 
+ network monitoring.  Applications include network statistics collection, 
+ security monitoring, network debugging, etc.  
+ .
+ Since almost every system vendor provides a different interface for 
+ packet capture, and since there are several tools that require this 
+ functionality, we've created this system-independent API to ease in 
+ porting and to alleviate the need for several system-dependent packet 
+ capture modules in each application.
+ .
+ Further information is available at http://www.tcpdump.org/
