@@ -1,3 +1,9 @@
+libpcap0.8 (0.8.3-3) unstable; urgency=low
+
+  * debian/control: libpcap0.8-dev conflicts with libpcap0.7-dev.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Wed,  9 Jun 2004 11:44:50 +0200
+
 libpcap0.8 (0.8.3-2) unstable; urgency=low
 
   * debian/control:

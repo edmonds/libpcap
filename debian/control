@@ -10,7 +10,7 @@ Package: libpcap0.8-dev
 Section: libdevel
 Architecture: any
 Depends: libpcap0.8 (= ${Source-Version}), libc6-dev
-Conflicts: libpcap-dev
+Conflicts: libpcap-dev, libpcap0.7-dev
 Description: Development library and header files for libpcap 0.8
  Headers, static libraries, and documentation for the libpcap library.
  .
