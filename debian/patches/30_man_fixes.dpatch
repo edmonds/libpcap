@@ -23,9 +23,9 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/pcap.3 libpcap0.8-0.8.3/pcap.3
---- /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/pcap.3	2004-03-28 23:45:32.000000000 +0200
-+++ libpcap0.8-0.8.3/pcap.3	2004-05-14 22:48:44.000000000 +0200
+diff -urNad /home/romain/Work/Debian/libpcap0.8/libpcap0.8-0.8.3/pcap.3 libpcap0.8-0.8.3/pcap.3
+--- /home/romain/Work/Debian/libpcap0.8/libpcap0.8-0.8.3/pcap.3	2004-07-21 19:41:53.000000000 +0200
++++ libpcap0.8-0.8.3/pcap.3	2004-07-21 19:42:28.000000000 +0200
 @@ -201,7 +201,7 @@
  .I fname
  specifies the name of the file to open. The file has
@@ -35,7 +35,18 @@ diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/pcap.3 
  and
  .BR tcpslice(1) .
  The name "-" in a synonym for
-@@ -1168,7 +1168,7 @@
+@@ -404,7 +404,9 @@
+ live capture, or all the packets in the file when reading a
+ ``savefile''.
+ .I callback
+-specifies a routine to be called with three arguments:
++specifies a 
++.I pcap_handler
++routine to be called with three arguments:
+ a
+ .I u_char
+ pointer which is passed in from
+@@ -1168,7 +1170,7 @@
  closes the ``savefile.''
  .PP
  .SH SEE ALSO

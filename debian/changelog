@@ -1,3 +1,11 @@
+libpcap0.8 (0.8.3-4) unstable; urgency=low
+
+  * debian/patches/30_man_fixes.dpatch: Explicitly mention `pcap_handler'
+    as routine type for pcap_loop() and pcap_dispatch() callbacks,
+    suggested by Florian Weimer <fw@deneb.enyo.de> (closes: #255267).
+
+ -- Romain Francoise <rfrancoise@debian.org>  Wed, 21 Jul 2004 19:46:07 +0200
+
 libpcap0.8 (0.8.3-3) unstable; urgency=low
 
   * debian/control: libpcap0.8-dev conflicts with libpcap0.7-dev.
