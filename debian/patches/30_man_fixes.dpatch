@@ -1,0 +1,46 @@
+#! /bin/sh -e
+## 30_man_fixes.dpatch by Romain Francoise <rfrancoise@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Misc. fixes to the upstream man page.
+
+if [ $# -lt 1 ]; then
+    echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
+    exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch} ${2:+-d $2}"
+
+case "$1" in
+    -patch) patch -p1 ${patch_opts} < $0;;
+    -unpatch) patch -R -p1 ${patch_opts} < $0;;
+    *)
+        echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
+        exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/pcap.3 libpcap0.8-0.8.3/pcap.3
+--- /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/pcap.3	2004-03-28 23:45:32.000000000 +0200
++++ libpcap0.8-0.8.3/pcap.3	2004-05-14 22:48:44.000000000 +0200
+@@ -201,7 +201,7 @@
+ .I fname
+ specifies the name of the file to open. The file has
+ the same format as those used by
+-.B tcpdump(1)
++.B tcpdump(8)
+ and
+ .BR tcpslice(1) .
+ The name "-" in a synonym for
+@@ -1168,7 +1168,7 @@
+ closes the ``savefile.''
+ .PP
+ .SH SEE ALSO
+-tcpdump(1), tcpslice(1)
++tcpdump(8), tcpslice(1)
+ .SH AUTHORS
+ The original authors are:
+ .LP

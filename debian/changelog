@@ -1,3 +1,14 @@
+libpcap0.8 (0.8.3-2) unstable; urgency=low
+
+  * debian/control:
+    + Put back URL markers in description.
+    + Switch Maintainer and Uploaders fields to match reality.
+  * debian/patches/30_man_fixes.dpatch: Patch to fix some inconsistencies 
+    in the upstream man page (tcpdump is in section 8, not 1).
+  * debian/patches/00list: Add 30_man_fixes.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Fri, 14 May 2004 23:43:02 +0200
+
 libpcap0.8 (0.8.3-1) unstable; urgency=low
 
   * New upstream release (closes: #235155).

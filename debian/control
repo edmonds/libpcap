@@ -1,8 +1,8 @@
 Source: libpcap0.8
 Section: devel
 Priority: optional
-Maintainer: Torsten Landschoff <torsten@debian.org>
-Uploaders: Romain Francoise <rfrancoise@debian.org>
+Maintainer: Romain Francoise <rfrancoise@debian.org>
+Uploaders: Torsten Landschoff <torsten@debian.org>
 Build-Depends: debhelper (>= 4), flex, bison, dpatch, perl
 Standards-Version: 3.6.1.0
 
@@ -24,7 +24,7 @@ Description: Development library and header files for libpcap 0.8
  porting and to alleviate the need for several system-dependent packet 
  capture modules in each application.
  .
- Further information is available at http://www.tcpdump.org/
+ Further information is available at <URL: http://www.tcpdump.org/>
 
 Package: libpcap0.8
 Section: libs
@@ -41,4 +41,4 @@ Description: System interface for user-level packet capture
  porting and to alleviate the need for several system-dependent packet 
  capture modules in each application.
  .
- Further information is available at http://www.tcpdump.org/
+ Further information is available at <URL: http://www.tcpdump.org/>
