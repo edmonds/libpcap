@@ -62,7 +62,7 @@ binary-arch: build install
 	dh_installdocs -A debian/README.Debian
 	dh_installexamples
 	dh_installmenu
-	dh_installmanpages -plibpcap0.8-dev
+	dh_installman -plibpcap0.8-dev
 	dh_installinfo
 #	dh_undocumented
 	dh_installchangelogs CHANGES

@@ -1,3 +1,12 @@
+libpcap0.8 (0.8.3-5) unstable; urgency=low
+
+  * debian/patches/40_sockaddr_ll.dpatch: Patch from Dean Gaudet
+    <dean@arctic.org> adding sockaddr_ll support to pcap_findalldevs
+    (closes: #278614).
+  * debian/rules: Use dh_installman, not dh_installmanpages.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun,  7 Nov 2004 22:24:50 +0100
+
 libpcap0.8 (0.8.3-4) unstable; urgency=low
 
   * debian/patches/30_man_fixes.dpatch: Explicitly mention `pcap_handler'
