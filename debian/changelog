@@ -1,3 +1,11 @@
+libpcap0.8 (0.8.3-6) unstable; urgency=low
+
+  * debian/patches/50_kfreebsd.dpatch: New patch, add support for
+    GNU/kFreeBSD, by Aurelien Jarno (closes: #293846).
+  * debian/patches/00list: Update.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Mon, 20 Jun 2005 21:36:09 +0200
+
 libpcap0.8 (0.8.3-5) unstable; urgency=low
 
   * debian/patches/40_sockaddr_ll.dpatch: Patch from Dean Gaudet

@@ -1,0 +1,42 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 50_kfreebsd.dpatch by Romain Francoise <rfrancoise@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Support for GNU/kFreeBSD, by Aurelien Jarno.
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./configure /tmp/dpep-work.9JtYv1/libpcap0.8-0.8.3/configure
+--- ./configure	2004-03-28 23:44:06.000000000 +0200
++++ /tmp/dpep-work.9JtYv1/libpcap0.8-0.8.3/configure	2005-06-20 21:33:53.000000000 +0200
+@@ -3811,7 +3811,7 @@
+ echo $ECHO_N "checking packet capture type... $ECHO_C" >&6
+ if test ! -z "$with_pcap" ; then
+ 	V_PCAP="$withval"
+-elif test -r /dev/bpf0 ; then
++elif test -r /dev/bpf0 || test -r /usr/include/net/bpf.h ; then
+ 	V_PCAP=bpf
+ elif test -r /usr/include/net/pfilt.h ; then
+ 	V_PCAP=pf
+diff -urNad --exclude=CVS --exclude=.svn ./configure.in /tmp/dpep-work.9JtYv1/libpcap0.8-0.8.3/configure.in
+--- ./configure.in	2004-03-28 23:43:34.000000000 +0200
++++ /tmp/dpep-work.9JtYv1/libpcap0.8-0.8.3/configure.in	2005-06-20 21:33:53.000000000 +0200
+@@ -70,7 +70,7 @@
+ AC_MSG_CHECKING(packet capture type)
+ if test ! -z "$with_pcap" ; then
+ 	V_PCAP="$withval"
+-elif test -r /dev/bpf0 ; then
++elif test -r /dev/bpf0 || test -r /usr/include/net/bpf.h ; then
+ 	V_PCAP=bpf
+ elif test -r /usr/include/net/pfilt.h ; then
+ 	V_PCAP=pf
+diff -urNad --exclude=CVS --exclude=.svn ./debian/control /tmp/dpep-work.9JtYv1/libpcap0.8-0.8.3/debian/control
+--- ./debian/control	2004-06-09 11:44:03.000000000 +0200
++++ /tmp/dpep-work.9JtYv1/libpcap0.8-0.8.3/debian/control	2005-06-20 21:33:53.000000000 +0200
+@@ -4,6 +4,7 @@
+ Maintainer: Romain Francoise <rfrancoise@debian.org>
+ Uploaders: Torsten Landschoff <torsten@debian.org>
+ Build-Depends: debhelper (>= 4), flex, bison, dpatch, perl
++Build-Conflicts: libpcap0.7-dev
+ Standards-Version: 3.6.1.0
+ 
+ Package: libpcap0.8-dev
