@@ -51,7 +51,7 @@
 
 #ifndef lint
 static const char rcsid[] _U_ =
-     "@(#) $Header: /tcpdump/master/libpcap/Win32/Src/getaddrinfo.c,v 1.1.2.1 2003/11/15 23:26:48 guy Exp $";
+     "@(#) $Header: /tcpdump/master/libpcap/Win32/Src/getaddrinfo.c,v 1.2 2003/11/15 23:24:06 guy Exp $";
 #endif
 
 #include <pcap-stdinc.h>
