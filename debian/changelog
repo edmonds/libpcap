@@ -1,3 +1,27 @@
+libpcap0.8 (0.9.3-1) unstable; urgency=low
+
+  * New upstream release: this is a new major version of libpcap but it is
+    API and ABI compatible with libpcap0.8 so the old soname and package
+    names were kept to avoid uncessary transition of all packages.
+
+  * debian/libpcap0.8.shlibs: New file.
+
+  * debian/patches/10_shared_lib.dpatch: Change perl snippet to get the
+    major version number from the package name rather than from the Debian
+    version.
+  * debian/rules: Ditto.
+
+  * debian/patches/60_version.dpatch: New patch, fixes upstream version
+    (still at 0.9.2 while this is version 0.9.3).
+
+  * debian/patches/10_shared_lib.dpatch: Resynchronized.
+  * debian/patches/40_sockaddr_ll.dpatch: Dropped (included upstream).
+  * debian/patches/00list: Update.
+
+  * debian/control: Bump Standards-Version, no changes needed.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sat, 16 Jul 2005 14:14:20 +0200
+
 libpcap0.8 (0.8.3-6) unstable; urgency=low
 
   * debian/patches/50_kfreebsd.dpatch: New patch, add support for

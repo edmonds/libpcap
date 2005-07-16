@@ -24,26 +24,27 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/Makefile.in libpcap0.8-0.8.3/Makefile.in
---- /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/Makefile.in	2004-04-30 16:40:33.000000000 +0200
-+++ libpcap0.8-0.8.3/Makefile.in	2004-04-30 16:41:43.000000000 +0200
-@@ -37,6 +37,15 @@
+diff -urNad --exclude=CVS --exclude=.svn ./Makefile.in /tmp/dpep-work.LZ6ijr/libpcap0.8-0.9.3/Makefile.in
+--- ./Makefile.in	2005-07-16 14:43:56.000000000 +0200
++++ /tmp/dpep-work.LZ6ijr/libpcap0.8-0.9.3/Makefile.in	2005-07-16 14:45:49.000000000 +0200
+@@ -37,6 +37,16 @@
  srcdir = @srcdir@
  VPATH = @srcdir@
  
 +# some defines for shared library compilation
-+MAJ=$(shell head -1 debian/changelog | perl -nle 'm/\S+\s+\((\d\.\d)\.\d+-\S+\)/ and print $$1')
++MAJ=$(shell head -1 debian/changelog | perl -nle 'm/\S+(\d.\d)\s+\(\d\.\d\.\d+-\S+\)/ and print $$1')
 +MIN=$(shell head -1 debian/changelog | perl -nle 'm/\S+\s+\(\d\.\d\.(\d+)-\S+\)/ and print $$1')
++LIBVERSION=$(shell head -1 debian/changelog | perl -nle 'm/\S+\s+\((\S+)-\S+\)/ and print $$1')
 +VERSION=$(MAJ).$(MIN)
 +LIBNAME=pcap
 +LIBRARY=lib$(LIBNAME).a
 +SOLIBRARY=lib$(LIBNAME).so
-+SHAREDLIB=$(SOLIBRARY).$(VERSION)
++SHAREDLIB=$(SOLIBRARY).$(LIBVERSION)
 +
  #
  # You shouldn't need to edit anything below.
  #
-@@ -49,6 +58,7 @@
+@@ -50,6 +60,7 @@
  
  # Standard CFLAGS
  CFLAGS = $(CCOPT) $(INCLS) $(DEFS)
@@ -51,7 +52,7 @@ diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/Makefil
  
  INSTALL = @INSTALL@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
-@@ -68,7 +78,11 @@
+@@ -69,7 +80,11 @@
  # problem if you don't own the file but can write to the directory.
  .c.o:
  	@rm -f $@
@@ -64,7 +65,7 @@ diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/Makefil
  
  PSRC =	pcap-@V_PCAP@.c
  FSRC =  fad-@V_FINDALLDEVS@.c
-@@ -83,6 +97,7 @@
+@@ -84,6 +99,7 @@
  # We would like to say "OBJ = $(SRC:.c=.o)" but Ultrix's make cannot
  # hack the extra indirection
  OBJ =	$(PSRC:.c=.o) $(FSRC:.c=.o) $(CSRC:.c=.o) $(SSRC:.c=.o) $(GENSRC:.c=.o) $(LIBOBJS)
@@ -72,20 +73,22 @@ diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/Makefil
  HDR =	pcap.h pcap-int.h pcap-namedb.h pcap-nit.h pcap-pf.h \
  	ethertype.h gencode.h gnuc.h
  GENHDR = \
-@@ -94,15 +109,22 @@
+@@ -95,9 +111,10 @@
  TAGFILES = \
  	$(SRC) $(HDR) $(TAGHDR)
  
 -CLEANFILES = $(OBJ) libpcap.a $(GENSRC) $(GENHDR) lex.yy.c
-+CLEANFILES = $(OBJ) $(OBJ_PIC) libpcap.a $(GENSRC) $(GENHDR) lex.yy.c libpcap.so*
++CLEANFILES = $(OBJ) libpcap.a $(GENSRC) $(GENHDR) lex.yy.c $(OBJ_PIC) \
++	$(GENHDR) lex.yy.c libpcap.so*
  
 -all: libpcap.a
 +all: libpcap.a $(SHAREDLIB)
  
  libpcap.a: $(OBJ)
  	@rm -f $@
- 	ar rc $@ $(OBJ) $(LIBS)
- 	$(RANLIB) $@
+@@ -121,6 +138,12 @@
+ 		-install_name $(libdir)/libpcap.0.dylib -compatibility_version `cat VERSION` \
+ 		-current_version `cat VERSION`
  
 +$(SHAREDLIB): $(OBJ_PIC)
 +	-@rm -f $@
@@ -93,11 +96,10 @@ diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/Makefil
 +	$(CC) $(CFLAGS_SHARED) -o $(SHAREDLIB) $(OBJ_PIC) -lc
 +	ln -s $(SHAREDLIB) $(SOLIBRARY).$(MAJ)
 +	ln -s $(SOLIBRARY).$(MAJ) $(SOLIBRARY)
-+
+ 
  scanner.c: $(srcdir)/scanner.l
  	@rm -f $@
- 	$(LEX) -t $< > $$$$.$@; mv $$$$.$@ $@
-@@ -110,6 +132,9 @@
+@@ -129,6 +152,9 @@
  scanner.o: scanner.c tokdefs.h
  	$(CC) $(CFLAGS) -c scanner.c
  
@@ -107,7 +109,7 @@ diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/Makefil
  pcap.o: version.h
  
  tokdefs.h: grammar.c
-@@ -123,9 +148,17 @@
+@@ -142,9 +168,17 @@
  	@rm -f $@
  	$(CC) $(CFLAGS) -Dyylval=pcap_lval -c grammar.c
  
@@ -125,14 +127,14 @@ diff -urNad /home/romain/Work/Debian/libpcap/libpcap0.8/libpcap0.8-0.8.3/Makefil
  snprintf.o: $(srcdir)/missing/snprintf.c
  	$(CC) $(CFLAGS) -o $@ -c $(srcdir)/missing/snprintf.c
  
-@@ -151,10 +184,16 @@
+@@ -170,10 +204,16 @@
  bpf_filter.o: bpf_filter.c
  	$(CC) $(CFLAGS) -c bpf_filter.c
  
 +bpf_filter_pic.o: bpf_filter.c
 +	$(CC) -fPIC $(CFLAGS) -c bpf_filter.c -o $@
 +
- install:
+ install: libpcap.a 
  	[ -d $(DESTDIR)$(libdir) ] || \
  	    (mkdir -p $(DESTDIR)$(libdir); chmod 755 $(DESTDIR)$(libdir))
  	$(INSTALL_DATA) libpcap.a $(DESTDIR)$(libdir)/libpcap.a
