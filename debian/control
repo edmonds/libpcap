@@ -2,9 +2,8 @@ Source: libpcap0.8
 Section: devel
 Priority: optional
 Maintainer: Romain Francoise <rfrancoise@debian.org>
-Uploaders: Torsten Landschoff <torsten@debian.org>
-Build-Depends: debhelper (>= 4), flex, bison, dpatch, perl
-Standards-Version: 3.6.2.1
+Build-Depends: debhelper (>= 5), flex, bison, dpatch, perl
+Standards-Version: 3.7.2
 
 Package: libpcap0.8-dev
 Section: libdevel

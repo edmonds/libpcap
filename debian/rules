@@ -48,7 +48,6 @@ binary-indep: build install
 # We have nothing to do by default.
 
 binary-arch: build install
-#	dh_testversion
 	dh_testdir
 	dh_testroot
         #
@@ -58,13 +57,11 @@ binary-arch: build install
 		usr/lib/libpcap.so.$(major)        \
 		usr/lib/libpcap.so.$(version)
 
-#	dh_installdebconf	
 	dh_installdocs -A debian/README.Debian
 	dh_installexamples
 	dh_installmenu
 	dh_installman -plibpcap0.8-dev
 	dh_installinfo
-#	dh_undocumented
 	dh_installchangelogs CHANGES
 	dh_link -plibpcap0.8-dev
 	dh_strip
