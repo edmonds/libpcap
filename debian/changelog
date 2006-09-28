@@ -1,3 +1,9 @@
+libpcap0.8 (0.9.5-1) unstable; urgency=low
+
+  * New upstream release: no API changes, no ABI changes.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Thu, 28 Sep 2006 11:51:23 +0200
+
 libpcap0.8 (0.9.4-2) unstable; urgency=low
 
   * debian/compat: Switch to debhelper compatibility level 5.
