@@ -27,7 +27,7 @@
 
 #ifndef lint
 static const char rcsid[] _U_ =
-    "@(#) $Header: /tcpdump/master/libpcap/pcap-linux.c,v 1.110.2.12 2006/09/18 17:34:31 guy Exp $ (LBL)";
+    "@(#) $Header: /tcpdump/master/libpcap/pcap-linux.c,v 1.110.2.14 2006/10/12 17:26:58 guy Exp $ (LBL)";
 #endif
 
 /*
@@ -962,6 +962,7 @@ pcap_setfilter_linux(pcap_t *handle, struct bpf_program *filter)
 		 * sake of correctness I added this check.
 		 */
 		fprintf(stderr, "Warning: Filter too complex for kernel\n");
+		fcode.len = 0;
 		fcode.filter = NULL;
 		can_filter_in_kernel = 0;
 	} else
@@ -2206,8 +2207,13 @@ set_kernel_filter(pcap_t *handle, struct sock_fprog *fcode)
 static int
 reset_kernel_filter(pcap_t *handle)
 {
-	/* setsockopt() barfs unless it get a dummy parameter */
-	int dummy;
+	/*
+	 * setsockopt() barfs unless it get a dummy parameter.
+	 * valgrind whines unless the value is initialized,
+	 * as it has no idea that setsockopt() ignores its
+	 * parameter.
+	 */
+	int dummy = 0;
 
 	return setsockopt(handle->fd, SOL_SOCKET, SO_DETACH_FILTER,
 				   &dummy, sizeof(dummy));

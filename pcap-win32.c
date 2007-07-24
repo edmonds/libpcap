@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 1999 - 2005 NetGroup, Politecnico di Torino (Italy)
- * Copyright (c) 2005 - 2006 CACE Technologies, Davis (California)
+ * Copyright (c) 2005 - 2007 CACE Technologies, Davis (California)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,7 @@
 
 #ifndef lint
 static const char rcsid[] _U_ =
-    "@(#) $Header: /tcpdump/master/libpcap/pcap-win32.c,v 1.25.2.5 2006/08/09 19:18:41 gianluca Exp $ (LBL)";
+    "@(#) $Header: /tcpdump/master/libpcap/pcap-win32.c,v 1.25.2.7 2007/06/14 22:07:14 gianluca Exp $ (LBL)";
 #endif
 
 #include <pcap-int.h>
@@ -495,14 +495,33 @@ pcap_open_live(const char *device, int snaplen, int promisc, int to_ms,
 		p->linktype = DLT_IEEE802_11_RADIO;
 		break;
 
+	case NdisMediumPpi:
+		p->linktype = DLT_PPI;
+		break;
+
 	default:
 		p->linktype = DLT_EN10MB;			/*an unknown adapter is assumed to be ethernet*/
 		break;
 	}
 
-	/* Set promisquous mode */
-	if (promisc) PacketSetHwFilter(p->adapter,NDIS_PACKET_TYPE_PROMISCUOUS);
-	 else PacketSetHwFilter(p->adapter,NDIS_PACKET_TYPE_ALL_LOCAL);
+	/* Set promiscuous mode */
+	if (promisc) 
+	{
+
+		if (PacketSetHwFilter(p->adapter,NDIS_PACKET_TYPE_PROMISCUOUS) == FALSE)
+		{
+			snprintf(ebuf, PCAP_ERRBUF_SIZE, "failed to set hardware filter to promiscuous mode");
+			goto bad;
+		}
+	}
+	else 
+	{
+		if (PacketSetHwFilter(p->adapter,NDIS_PACKET_TYPE_ALL_LOCAL) == FALSE)
+		{
+			snprintf(ebuf, PCAP_ERRBUF_SIZE, "failed to set hardware filter to non-promiscuous mode");
+			goto bad;
+		}
+	}
 
 	/* Set the buffer size */
 	p->bufsize = PcapBufSize;
