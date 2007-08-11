@@ -1,3 +1,19 @@
+libpcap0.8 (0.9.5-2) unstable; urgency=low
+
+  * Convert package to quilt for patch management.
+
+  * debian/control:
+    + Move libpcap-dev here from the old libpcap source package, thanks to
+      Petr Salinger.
+    + Use ${binary:Version} instead of ${Source-Version}.
+    + Depend on quilt, not dpatch.
+
+  * debian/rules:
+    + Don't ignore errors in clean target.
+    + Include /usr/share/quilt/quilt.make.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sat, 11 Aug 2007 19:45:20 +0200
+
 libpcap0.8 (0.9.5-1) unstable; urgency=low
 
   * New upstream release: no API changes, no ABI changes.

@@ -2,14 +2,22 @@ Source: libpcap0.8
 Section: devel
 Priority: optional
 Maintainer: Romain Francoise <rfrancoise@debian.org>
-Build-Depends: debhelper (>= 5), flex, bison, dpatch, perl
+Build-Depends: debhelper (>= 5), flex, bison, quilt (>= 0.40), perl
 Standards-Version: 3.7.2
+
+Package: libpcap-dev
+Section: oldlibs
+Architecture: all
+Depends: libpcap0.8-dev
+Priority: extra
+Description: Development library for libpcap (transitional package)
+ Empty package to facilitate upgrades, can be safely removed.
 
 Package: libpcap0.8-dev
 Section: libdevel
 Architecture: any
-Depends: libpcap0.8 (= ${Source-Version}), libc6-dev
-Conflicts: libpcap-dev, libpcap0.7-dev
+Depends: libpcap0.8 (= ${binary:Version}), libc6-dev
+Conflicts: libpcap-dev (<< 0.9), libpcap0.7-dev
 Description: Development library and header files for libpcap 0.8
  Headers, static libraries, and documentation for the libpcap library.
  .
