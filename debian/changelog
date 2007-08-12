@@ -1,3 +1,13 @@
+libpcap0.8 (0.9.7-1) unstable; urgency=low
+
+  * New upstream release (closes: #432645, #433420).
+  * debian/patches/50_autotools-dev.diff: New patch, make config.{guess,sub}
+    exec newer versions of themselves if autotools-dev is installed.
+  * debian/patches/series: Update.
+  * debian/control: Add build-depends on autotools-dev.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 12 Aug 2007 14:20:31 +0200
+
 libpcap0.8 (0.9.5-2) unstable; urgency=low
 
   * Convert package to quilt for patch management.

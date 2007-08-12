@@ -2,3 +2,4 @@
 20_mac_syntax.diff
 30_man_fixes.diff
 50_kfreebsd.diff
+50_autotools-dev.diff

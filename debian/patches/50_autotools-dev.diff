@@ -1,0 +1,24 @@
+--- libpcap0.8-0.9.7.orig/config.guess
++++ libpcap0.8-0.9.7/config.guess
+@@ -1,4 +1,9 @@
+ #! /bin/sh
++
++if [ -x /usr/share/misc/config.guess ]; then
++        exec /usr/share/misc/config.guess "$@"
++fi
++
+ # Attempt to guess a canonical system name.
+ #   Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+ #   2000, 2001, 2002, 2003 Free Software Foundation, Inc.
+--- libpcap0.8-0.9.7.orig/config.sub
++++ libpcap0.8-0.9.7/config.sub
+@@ -1,4 +1,9 @@
+ #! /bin/sh
++
++if [ -x /usr/share/misc/config.sub ]; then
++        exec /usr/share/misc/config.sub "$@"
++fi
++
+ # Configuration validation subroutine script.
+ #   Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+ #   2000, 2001, 2002, 2003 Free Software Foundation, Inc.

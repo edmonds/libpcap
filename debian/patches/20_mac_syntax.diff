@@ -2,8 +2,8 @@ Adds more possible syntaxes to input MAC addresses:
 - the nn.nn.nn.nn.nn.nn syntax
 - the hexadecimal syntax
 
---- libpcap0.8-0.9.5.orig/nametoaddr.c
-+++ libpcap0.8-0.9.5/nametoaddr.c
+--- libpcap0.8-0.9.7.orig/nametoaddr.c
++++ libpcap0.8-0.9.7/nametoaddr.c
 @@ -410,7 +410,7 @@
  	e = ep = (u_char *)malloc(6);
  
@@ -13,8 +13,8 @@ Adds more possible syntaxes to input MAC addresses:
  			s += 1;
  		d = xdtoi(*s++);
  		if (isxdigit((unsigned char)*s)) {
---- libpcap0.8-0.9.5.orig/scanner.l
-+++ libpcap0.8-0.9.5/scanner.l
+--- libpcap0.8-0.9.7.orig/scanner.l
++++ libpcap0.8-0.9.7/scanner.l
 @@ -80,6 +80,7 @@
  N		([0-9]+|(0X|0x)[0-9A-Fa-f]+)
  B		([0-9A-Fa-f][0-9A-Fa-f]?)
@@ -23,7 +23,7 @@ Adds more possible syntaxes to input MAC addresses:
  
  %a 18400
  %o 21500
-@@ -306,7 +307,7 @@
+@@ -310,7 +311,7 @@
  {N}			{ yylval.i = stoi((char *)yytext); return NUM; }
  ({N}\.{N})|({N}\.{N}\.{N})|({N}\.{N}\.{N}\.{N})	{
  			yylval.s = sdup((char *)yytext); return HID; }
@@ -32,7 +32,7 @@ Adds more possible syntaxes to input MAC addresses:
  			  return EID; }
  {V6}			{
  #ifdef INET6
-@@ -324,6 +325,8 @@
+@@ -328,6 +329,8 @@
  #endif /*INET6*/
  			}
  {B}:+({B}:+)+		{ bpf_error("bogus ethernet address %s", yytext); }
