@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Romain Francoise <rfrancoise@debian.org>
 Build-Depends: debhelper (>= 5), flex, bison, quilt (>= 0.40), perl, autotools-dev
 Standards-Version: 3.7.2
+Homepage: http://www.tcpdump.org/
 
 Package: libpcap-dev
 Section: oldlibs
@@ -30,8 +31,6 @@ Description: Development library and header files for libpcap 0.8
  functionality, we've created this system-independent API to ease in 
  porting and to alleviate the need for several system-dependent packet 
  capture modules in each application.
- .
- Further information is available at <URL: http://www.tcpdump.org/>
 
 Package: libpcap0.8
 Section: libs
@@ -47,5 +46,3 @@ Description: System interface for user-level packet capture
  functionality, we've created this system-independent API to ease in 
  porting and to alleviate the need for several system-dependent packet 
  capture modules in each application.
- .
- Further information is available at <URL: http://www.tcpdump.org/>
