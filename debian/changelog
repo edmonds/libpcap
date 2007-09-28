@@ -1,3 +1,9 @@
+libpcap0.8 (0.9.8-1) unstable; urgency=low
+
+  * New upstream release: no API changes, no ABI changes.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Fri, 28 Sep 2007 18:11:12 +0200
+
 libpcap0.8 (0.9.7-2) unstable; urgency=low
 
   * debian/control: Move upstream URL to the Homepage field.
