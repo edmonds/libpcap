@@ -1,22 +1,38 @@
 Support for GNU/kFreeBSD, by Aurelien Jarno.
 
---- libpcap0.8-0.9.7.orig/configure
-+++ libpcap0.8-0.9.7/configure
-@@ -5217,7 +5217,7 @@
- #define HAVE_CLONING_BPF 1
- _ACEOF
- 
+--- a/configure.in
++++ b/configure.in
+@@ -28,6 +28,7 @@
+ dnl
+ AC_CHECK_HEADERS(sys/ioccom.h sys/sockio.h limits.h paths.h)
+ AC_CHECK_HEADERS(net/pfvar.h, , , [#include <sys/types.h>
++#include <net/if_pflog.h>
+ #include <sys/socket.h>
+ #include <net/if.h>])
+ AC_CHECK_HEADERS(netinet/if_ether.h, , , [#include <sys/types.h>
+@@ -193,7 +194,7 @@
+ 	#
+ 	V_PCAP=bpf
+ 	AC_DEFINE(HAVE_CLONING_BPF,1,[define if you have a cloning BPF device])
 -elif test -r /dev/bpf0 ; then
 +elif test -r /dev/bpf0 || test -r /usr/include/net/bpf.h ; then
  	V_PCAP=bpf
  elif test -r /usr/include/net/pfilt.h ; then
  	V_PCAP=pf
---- libpcap0.8-0.9.7.orig/configure.in
-+++ libpcap0.8-0.9.7/configure.in
-@@ -190,7 +190,7 @@
- 	#
- 	V_PCAP=bpf
- 	AC_DEFINE(HAVE_CLONING_BPF,1,[define if you have a cloning BPF device])
+--- a/configure
++++ b/configure
+@@ -4246,6 +4246,7 @@
+ cat >>conftest.$ac_ext <<_ACEOF
+ /* end confdefs.h.  */
+ #include <sys/types.h>
++#include <net/if_pflog.h>
+ #include <sys/socket.h>
+ #include <net/if.h>
+ 
+@@ -5647,7 +5648,7 @@
+ #define HAVE_CLONING_BPF 1
+ _ACEOF
+ 
 -elif test -r /dev/bpf0 ; then
 +elif test -r /dev/bpf0 || test -r /usr/include/net/bpf.h ; then
  	V_PCAP=bpf
