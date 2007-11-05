@@ -1,10 +1,10 @@
-libpcap0.8 (0.9.8-3) unstable; urgency=low
+libpcap0.8 (0.9.8-2) unstable; urgency=low
 
   * debian/control: Add Vcs-Browser and Vcs-Git fields.
   * debian/patches/50_kfreebsd.diff: Update with new patch by Petr
     Salinger fixing FTBFS on Debian GNU/kFreeBSD (closes: #448694).
 
- -- Romain Francoise <rfrancoise@debian.org>  Mon, 05 Nov 2007 18:28:06 +0100
+ -- Romain Francoise <rfrancoise@debian.org>  Mon, 05 Nov 2007 18:32:28 +0100
 
 libpcap0.8 (0.9.8-1) unstable; urgency=low
 
