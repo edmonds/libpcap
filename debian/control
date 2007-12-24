@@ -9,10 +9,9 @@ Vcs-Browser: http://git.debian.org/?p=users/rfrancoise/libpcap0.8.git
 Vcs-Git: git://git.debian.org/git/users/rfrancoise/libpcap0.8.git
 
 Package: libpcap-dev
-Section: oldlibs
+Section: libdevel
 Architecture: all
 Depends: libpcap0.8-dev
-Priority: extra
 Description: Development library for libpcap (transitional package)
  Empty package to facilitate upgrades, can be safely removed.
 
