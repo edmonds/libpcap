@@ -64,7 +64,7 @@ binary-arch: build install
 	dh_installinfo
 	dh_installchangelogs CHANGES
 	dh_link -plibpcap0.8-dev
-	dh_strip
+	dh_strip --dbg-package=libpcap0.8-dbg
 	dh_compress
 	dh_fixperms
 	dh_makeshlibs
