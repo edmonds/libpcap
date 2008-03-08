@@ -8,9 +8,11 @@ libpcap0.8 (0.9.8-3) unstable; urgency=low
     + Change section and priority for libpcap-dev.
     + Tweak short descriptions.
     + Set Standards-Version to 3.7.3.
-  * debian/rules: Install debugging symbols in libpcap0.8-dbg.
+  * debian/rules:
+    + Install debugging symbols in libpcap0.8-dbg.
+    + Add -g to default CFLAGS.
 
- -- Romain Francoise <rfrancoise@debian.org>  Sat, 08 Mar 2008 18:47:34 +0100
+ -- Romain Francoise <rfrancoise@debian.org>  Sat, 08 Mar 2008 18:53:59 +0100
 
 libpcap0.8 (0.9.8-2) unstable; urgency=low
 

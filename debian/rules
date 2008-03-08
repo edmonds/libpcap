@@ -7,7 +7,7 @@ version := $(shell head -1 debian/changelog | \
 major := $(shell head -1 debian/changelog | \
 	perl -nle 'm/\S+(\d.\d)\s+\(\d\.\d\.\d+-\S+\)/ and print $$1')
 
-export CFLAGS=-D_FILE_OFFSET_BITS=64
+export CFLAGS=-D_FILE_OFFSET_BITS=64 -g
 
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
         CFLAGS += -O0
