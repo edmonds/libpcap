@@ -1,3 +1,14 @@
+libpcap (0.9.8-4) unstable; urgency=low
+
+  * Now that the transition is over, rename this source package from
+    'libpcap0.8' to 'libpcap'.
+  * debian/control: Rename source, adjust Vcs-* fields.
+  * debian/rules: Various cleanups.
+  * debian/libpcap0.8.post{inst,rm}: Deleted.
+  * debian/patches/10_shared_lib.diff: Deal with source name change.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sat, 07 Jun 2008 12:33:47 +0200
+
 libpcap0.8 (0.9.8-3) unstable; urgency=low
 
   * debian/copyright:
