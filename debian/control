@@ -1,4 +1,4 @@
-Source: libpcap0.8
+Source: libpcap
 Section: devel
 Priority: optional
 Maintainer: Romain Francoise <rfrancoise@debian.org>
