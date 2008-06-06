@@ -1,17 +1,15 @@
 Debian-specific modifications to the upstream Makefile.in to
 build a shared library.
 
---- libpcap0.8-0.9.7.orig/Makefile.in
-+++ libpcap0.8-0.9.7/Makefile.in
-@@ -37,6 +37,16 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -37,6 +37,14 @@
  srcdir = @srcdir@
  VPATH = @srcdir@
  
 +# some defines for shared library compilation
-+MAJ=$(shell head -1 debian/changelog | perl -nle 'm/\S+(\d.\d)\s+\(\d\.\d\.\d+-\S+\)/ and print $$1')
-+MIN=$(shell head -1 debian/changelog | perl -nle 'm/\S+\s+\(\d\.\d\.(\d+)-\S+\)/ and print $$1')
++MAJ=0.8
 +LIBVERSION=$(shell head -1 debian/changelog | perl -nle 'm/\S+\s+\((\S+)-\S+\)/ and print $$1')
-+VERSION=$(MAJ).$(MIN)
 +LIBNAME=pcap
 +LIBRARY=lib$(LIBNAME).a
 +SOLIBRARY=lib$(LIBNAME).so
@@ -20,7 +18,7 @@ build a shared library.
  #
  # You shouldn't need to edit anything below.
  #
-@@ -52,6 +62,7 @@
+@@ -52,6 +60,7 @@
  
  # Standard CFLAGS
  CFLAGS = $(CCOPT) $(INCLS) $(DEFS)
@@ -28,7 +26,7 @@ build a shared library.
  
  INSTALL = @INSTALL@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
-@@ -71,7 +82,11 @@
+@@ -71,7 +80,11 @@
  # problem if you don't own the file but can write to the directory.
  .c.o:
  	@rm -f $@
@@ -41,7 +39,7 @@ build a shared library.
  
  PSRC =	pcap-@V_PCAP@.c
  FSRC =  fad-@V_FINDALLDEVS@.c
-@@ -86,6 +101,7 @@
+@@ -86,6 +99,7 @@
  # We would like to say "OBJ = $(SRC:.c=.o)" but Ultrix's make cannot
  # hack the extra indirection
  OBJ =	$(PSRC:.c=.o) $(FSRC:.c=.o) $(CSRC:.c=.o) $(SSRC:.c=.o) $(GENSRC:.c=.o) $(LIBOBJS)
@@ -49,7 +47,7 @@ build a shared library.
  HDR =	pcap.h pcap-int.h pcap-namedb.h pcap-nit.h pcap-pf.h \
  	ethertype.h gencode.h gnuc.h
  GENHDR = \
-@@ -97,9 +113,10 @@
+@@ -97,9 +111,10 @@
  TAGFILES = \
  	$(SRC) $(HDR) $(TAGHDR)
  
@@ -62,7 +60,7 @@ build a shared library.
  
  libpcap.a: $(OBJ)
  	@rm -f $@
-@@ -123,6 +140,12 @@
+@@ -123,6 +138,12 @@
  		-install_name $(libdir)/libpcap.0.dylib -compatibility_version `cat VERSION` \
  		-current_version `cat VERSION`
  
@@ -75,7 +73,7 @@ build a shared library.
  
  scanner.c: $(srcdir)/scanner.l
  	@rm -f $@
-@@ -131,6 +154,9 @@
+@@ -131,6 +152,9 @@
  scanner.o: scanner.c tokdefs.h
  	$(CC) $(CFLAGS) -c scanner.c
  
@@ -85,7 +83,7 @@ build a shared library.
  pcap.o: version.h
  
  tokdefs.h: grammar.c
-@@ -144,9 +170,17 @@
+@@ -144,9 +168,17 @@
  	@rm -f $@
  	$(CC) $(CFLAGS) -Dyylval=pcap_lval -c grammar.c
  
@@ -103,7 +101,7 @@ build a shared library.
  snprintf.o: $(srcdir)/missing/snprintf.c
  	$(CC) $(CFLAGS) -o $@ -c $(srcdir)/missing/snprintf.c
  
-@@ -172,10 +206,16 @@
+@@ -172,10 +204,16 @@
  bpf_filter.o: bpf_filter.c
  	$(CC) $(CFLAGS) -c bpf_filter.c
  
