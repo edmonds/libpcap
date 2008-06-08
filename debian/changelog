@@ -1,3 +1,12 @@
+libpcap (0.9.8-5) unstable; urgency=low
+
+  * debian/rules: Fix targets to avoid building libpcap-dev in
+    binary-arch (doh!).
+  * debian/control: Set Standards-Version to 3.8.0.
+  * debian/README.source: New file.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 08 Jun 2008 11:58:04 +0200
+
 libpcap (0.9.8-4) unstable; urgency=low
 
   * Now that the transition is over, rename this source package from
