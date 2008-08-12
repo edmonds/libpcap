@@ -1,5 +1,8 @@
 Debian-specific modifications to the upstream Makefile.in to
 build a shared library.
+---
+ Makefile.in |   44 +++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 41 insertions(+), 3 deletions(-)
 
 --- a/Makefile.in
 +++ b/Makefile.in

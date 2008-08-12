@@ -1,4 +1,8 @@
 Support for GNU/kFreeBSD, by Aurelien Jarno.
+---
+ configure    |    3 ++-
+ configure.in |    3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
 --- a/configure.in
 +++ b/configure.in

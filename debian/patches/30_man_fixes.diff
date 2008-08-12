@@ -1,7 +1,10 @@
 Misc. fixes to the upstream man page.
+---
+ pcap.3 |    8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
---- libpcap0.8-0.9.7.orig/pcap.3
-+++ libpcap0.8-0.9.7/pcap.3
+--- a/pcap.3
++++ b/pcap.3
 @@ -215,7 +215,7 @@
  .I fname
  specifies the name of the file to open. The file has
