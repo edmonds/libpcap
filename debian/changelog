@@ -1,3 +1,14 @@
+libpcap (1.0.0-1) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/libpcap0.8.shlibs: Bump to >= 1.0.0-1 (no real changes, just
+    cosmetics).
+  * debian/patches/20-fix-any-intf.diff: New patch cherry-picked from
+    upstream; fixes handling of the 'any' device.
+  * debian/patches/series: Update.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Mon, 16 Feb 2009 19:24:03 +0100
+
 libpcap (1.0.0-1~exp1) experimental; urgency=low
 
   * New upstream release (closes: #507019).
