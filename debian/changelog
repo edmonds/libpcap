@@ -1,3 +1,18 @@
+libpcap (1.0.0-1~exp1) experimental; urgency=low
+
+  * New upstream release (closes: #507019).
+    + No changes to existing API, only additions.
+    + One of the members of struct bpf_insn (the constant) changed from
+      signed to unsigned but this does not break the ABI as users always
+      convert it to unsigned anyway (see pcap-bpf.h r1.39 in upstream CVS).
+  * debian/libpcap0.8.shlibs: Bump dependency to >= 1.0.0-1~exp1 for API
+    additions.
+  * debian/rules: Don't remove 'net' in clean target.
+  * debian/libpcap0.8-dev.dirs: Add usr/bin.
+  * debian/patches/20_mac_syntax.diff: Dropped.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 30 Nov 2008 20:31:52 +0100
+
 libpcap (0.9.8-5) unstable; urgency=low
 
   * debian/rules: Fix targets to avoid building libpcap-dev in

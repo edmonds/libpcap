@@ -1,12 +1,14 @@
 Debian-specific modifications to the upstream Makefile.in to
 build a shared library.
 ---
- Makefile.in |   44 +++++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 41 insertions(+), 3 deletions(-)
+ Makefile.in  |   45 ++++++++++++++++++++++++++++++++++++++++++---
+ configure    |    2 +-
+ configure.in |    2 +-
+ 3 files changed, 44 insertions(+), 5 deletions(-)
 
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -37,6 +37,14 @@
+@@ -40,6 +40,14 @@
  srcdir = @srcdir@
  VPATH = @srcdir@
  
@@ -21,7 +23,7 @@ build a shared library.
  #
  # You shouldn't need to edit anything below.
  #
-@@ -52,6 +60,7 @@
+@@ -56,6 +64,7 @@
  
  # Standard CFLAGS
  CFLAGS = $(CCOPT) $(INCLS) $(DEFS)
@@ -29,7 +31,7 @@ build a shared library.
  
  INSTALL = @INSTALL@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
-@@ -71,7 +80,11 @@
+@@ -75,7 +84,11 @@
  # problem if you don't own the file but can write to the directory.
  .c.o:
  	@rm -f $@
@@ -40,32 +42,38 @@ build a shared library.
 +	@rm -f $@
 +	$(CC) -fPIC $(CFLAGS) -c -o $@ $(srcdir)/$*.c
  
- PSRC =	pcap-@V_PCAP@.c
+ PSRC =	pcap-@V_PCAP@.c @USB_SRC@ @BT_SRC@
  FSRC =  fad-@V_FINDALLDEVS@.c
-@@ -86,6 +99,7 @@
+@@ -90,6 +103,7 @@
  # We would like to say "OBJ = $(SRC:.c=.o)" but Ultrix's make cannot
  # hack the extra indirection
  OBJ =	$(PSRC:.c=.o) $(FSRC:.c=.o) $(CSRC:.c=.o) $(SSRC:.c=.o) $(GENSRC:.c=.o) $(LIBOBJS)
 +OBJ_PIC = $(PSRC:.c=_pic.o) $(FSRC:.c=_pic.o) $(CSRC:.c=_pic.o) $(SSRC:.c=_pic.o) $(GENSRC:.c=_pic.o)
- HDR =	pcap.h pcap-int.h pcap-namedb.h pcap-nit.h pcap-pf.h \
- 	ethertype.h gencode.h gnuc.h
- GENHDR = \
-@@ -97,9 +111,10 @@
+ HDR = \
+ 	acconfig.h \
+ 	arcnet.h \
+@@ -122,7 +136,8 @@
  TAGFILES = \
  	$(SRC) $(HDR) $(TAGHDR)
  
 -CLEANFILES = $(OBJ) libpcap.a $(GENSRC) $(GENHDR) lex.yy.c
-+CLEANFILES = $(OBJ) libpcap.a $(GENSRC) $(GENHDR) lex.yy.c $(OBJ_PIC) \
-+	$(GENHDR) lex.yy.c libpcap.so*
++CLEANFILES = $(OBJ) libpcap.a $(GENSRC) $(GENHDR) lex.yy.c \
++	$(OBJ_PIC) libpcap.so*
  
--all: libpcap.a
-+all: libpcap.a $(SHAREDLIB)
+ MAN1 = pcap-config.1
+ 
+@@ -311,7 +326,7 @@
+ 	Win32/Src/inet_net.c \
+ 	Win32/Src/inet_pton.c
+ 
+-all: libpcap.a pcap-config
++all: libpcap.a pcap-config $(SHAREDLIB)
  
  libpcap.a: $(OBJ)
  	@rm -f $@
-@@ -123,6 +138,12 @@
- 		-install_name $(libdir)/libpcap.0.dylib -compatibility_version `cat VERSION` \
- 		-current_version `cat VERSION`
+@@ -344,6 +359,13 @@
+ 		-compatibility_version 1 \
+ 		-current_version `sed 's/[^0-9.].*$$//' $(srcdir)/VERSION`
  
 +$(SHAREDLIB): $(OBJ_PIC)
 +	-@rm -f $@
@@ -73,10 +81,11 @@ build a shared library.
 +	$(CC) $(CFLAGS_SHARED) -o $(SHAREDLIB) $(OBJ_PIC) -lc
 +	ln -s $(SHAREDLIB) $(SOLIBRARY).$(MAJ)
 +	ln -s $(SOLIBRARY).$(MAJ) $(SOLIBRARY)
- 
++
  scanner.c: $(srcdir)/scanner.l
  	@rm -f $@
-@@ -131,6 +152,9 @@
+ 	./runlex.sh $(LEX) -o$@ $<
+@@ -351,6 +373,9 @@
  scanner.o: scanner.c tokdefs.h
  	$(CC) $(CFLAGS) -c scanner.c
  
@@ -86,7 +95,7 @@ build a shared library.
  pcap.o: version.h
  
  tokdefs.h: grammar.c
-@@ -144,9 +168,17 @@
+@@ -364,9 +389,17 @@
  	@rm -f $@
  	$(CC) $(CFLAGS) -Dyylval=pcap_lval -c grammar.c
  
@@ -104,20 +113,45 @@ build a shared library.
  snprintf.o: $(srcdir)/missing/snprintf.c
  	$(CC) $(CFLAGS) -o $@ -c $(srcdir)/missing/snprintf.c
  
-@@ -172,10 +204,16 @@
+@@ -392,6 +425,9 @@
  bpf_filter.o: bpf_filter.c
  	$(CC) $(CFLAGS) -c bpf_filter.c
  
 +bpf_filter_pic.o: bpf_filter.c
 +	$(CC) -fPIC $(CFLAGS) -c bpf_filter.c -o $@
 +
- install: libpcap.a 
- 	[ -d $(DESTDIR)$(libdir) ] || \
+ #
+ # Generate the pcap-config script.
+ #
+@@ -418,6 +454,9 @@
  	    (mkdir -p $(DESTDIR)$(libdir); chmod 755 $(DESTDIR)$(libdir))
  	$(INSTALL_DATA) libpcap.a $(DESTDIR)$(libdir)/libpcap.a
+ 	$(RANLIB) $(DESTDIR)$(libdir)/libpcap.a
 +	$(INSTALL_DATA) $(SHAREDLIB) $(DESTDIR)$(libdir)/
 +	ln -sf $(SHAREDLIB) $(DESTDIR)$(libdir)/$(SOLIBRARY).$(MAJ)
 +	ln -sf $(SOLIBRARY).$(MAJ) $(DESTDIR)$(libdir)/$(SOLIBRARY)
- 	$(RANLIB) $(DESTDIR)$(libdir)/libpcap.a
  	[ -d $(DESTDIR)$(includedir) ] || \
  	    (mkdir -p $(DESTDIR)$(includedir); chmod 755 $(DESTDIR)$(includedir))
+ 	[ -d $(DESTDIR)$(includedir)/pcap ] || \
+--- a/configure
++++ b/configure
+@@ -8658,7 +8658,7 @@
+ 	;;
+ 
+ linux*)
+-	V_CCOPT="$V_CCOPT -fPIC"
++	V_CCOPT="$V_CCOPT"
+ 	;;
+ 
+ osf*)
+--- a/configure.in
++++ b/configure.in
+@@ -943,7 +943,7 @@
+ 	;;
+ 
+ linux*)
+-	V_CCOPT="$V_CCOPT -fPIC"
++	V_CCOPT="$V_CCOPT"
+ 	;;
+ 
+ osf*)

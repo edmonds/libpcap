@@ -27,7 +27,6 @@ clean-patched:
 	dh_testroot
 	rm -f build-stamp
 	[ ! -f Makefile ] || $(MAKE) distclean
-	rm -f net
 	dh_clean
 
 install: build

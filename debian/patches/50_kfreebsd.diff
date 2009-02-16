@@ -6,15 +6,15 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
 
 --- a/configure.in
 +++ b/configure.in
-@@ -28,6 +28,7 @@
+@@ -35,6 +35,7 @@
  dnl
  AC_CHECK_HEADERS(sys/ioccom.h sys/sockio.h limits.h paths.h)
  AC_CHECK_HEADERS(net/pfvar.h, , , [#include <sys/types.h>
 +#include <net/if_pflog.h>
  #include <sys/socket.h>
  #include <net/if.h>])
- AC_CHECK_HEADERS(netinet/if_ether.h, , , [#include <sys/types.h>
-@@ -193,7 +194,7 @@
+ if test "$ac_cv_header_net_pfvar_h" = yes; then
+@@ -230,7 +231,7 @@
  	#
  	V_PCAP=bpf
  	AC_DEFINE(HAVE_CLONING_BPF,1,[define if you have a cloning BPF device])
@@ -25,7 +25,7 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  	V_PCAP=pf
 --- a/configure
 +++ b/configure
-@@ -4246,6 +4246,7 @@
+@@ -4791,6 +4791,7 @@
  cat >>conftest.$ac_ext <<_ACEOF
  /* end confdefs.h.  */
  #include <sys/types.h>
@@ -33,7 +33,7 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  #include <sys/socket.h>
  #include <net/if.h>
  
-@@ -5647,7 +5648,7 @@
+@@ -6272,7 +6273,7 @@
  #define HAVE_CLONING_BPF 1
  _ACEOF
  
