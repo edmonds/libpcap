@@ -49,7 +49,7 @@ Description: system interface for user-level packet capture
  capture modules in each application.
 
 Package: libpcap0.8-dbg
-Section: libs
+Section: debug
 Priority: extra
 Architecture: any
 Depends: libpcap0.8 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
