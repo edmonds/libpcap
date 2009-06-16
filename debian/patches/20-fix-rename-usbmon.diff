@@ -1,0 +1,47 @@
+commit 3866e8312346839a7b6d1ddb521c4a0a8033dd5f
+Author: Guy Harris <gharris@steve.local>
+Date:   Thu Mar 19 09:37:03 2009 -0700
+
+    From Romain Francoise: rename the USB-sniffing devices to "usbmonN", so
+    as not to collide with the "usbN" names for USB-based networking
+    devices.
+
+diff --git a/inet.c b/inet.c
+index 9cd7df7..11efbf4 100644
+--- a/inet.c
++++ b/inet.c
+@@ -669,7 +669,7 @@ pcap_lookupnet(device, netp, maskp, errbuf)
+ 	    || strstr(device, "bluetooth") != NULL
+ #endif
+ #ifdef PCAP_SUPPORT_USB
+-	    || strstr(device, "usb") != NULL
++	    || strstr(device, "usbmon") != NULL
+ #endif
+ 	    ) {
+ 		*netp = *maskp = 0;
+diff --git a/pcap-linux.c b/pcap-linux.c
+index 43dfe92..9314eec 100644
+--- a/pcap-linux.c
++++ b/pcap-linux.c
+@@ -324,7 +324,7 @@ pcap_create(const char *device, char *ebuf)
+ #endif
+ 
+ #ifdef PCAP_SUPPORT_USB
+-	if (strstr(device, "usb")) {
++	if (strstr(device, "usbmon")) {
+ 		return usb_create(device, ebuf);
+ 	}
+ #endif
+diff --git a/pcap-usb-linux.c b/pcap-usb-linux.c
+index 93c3f6d..358865c 100644
+--- a/pcap-usb-linux.c
++++ b/pcap-usb-linux.c
+@@ -64,7 +64,7 @@ static const char rcsid[] _U_ =
+ #include <linux/usbdevice_fs.h>
+ #endif
+ 
+-#define USB_IFACE "usb"
++#define USB_IFACE "usbmon"
+ #define USB_TEXT_DIR "/sys/kernel/debug/usbmon"
+ #define SYS_USB_BUS_DIR "/sys/bus/usb/devices"
+ #define PROC_USB_BUS_DIR "/proc/bus/usb"
