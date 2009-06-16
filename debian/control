@@ -3,7 +3,7 @@ Section: devel
 Priority: optional
 Maintainer: Romain Francoise <rfrancoise@debian.org>
 Build-Depends: debhelper (>= 5), flex, bison, quilt (>= 0.40), perl, autotools-dev
-Standards-Version: 3.8.0
+Standards-Version: 3.8.1
 Homepage: http://www.tcpdump.org/
 Vcs-Browser: http://git.debian.org/?p=users/rfrancoise/libpcap.git
 Vcs-Git: git://git.debian.org/git/users/rfrancoise/libpcap.git
