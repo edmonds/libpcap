@@ -1,3 +1,20 @@
+libpcap (1.0.0-2) unstable; urgency=low
+
+  * debian/rules: Move pcap-filter(7) man page to libpcap0.8 from
+    libpcap0.8-dev (see #527599).
+  * debian/control:
+    + Make libpcap0.8 replace libpcap0.8-dev (<< 1.0.0-2) for the
+      aforementioned change.
+    + Add explicit build-depends on linux-libc-dev (>= 2.6.27) on i386 to
+      make sure that tpacket_v2 support gets compiled in (closes: #517098).
+    + Move libpcap0.8-dbg to 'debug' to follow override.
+    + Set Standards-Version to 3.8.1.
+  * debian/patches/20-fix-rename-usbmon.diff: New patch cherry-picked from
+    upstream; renames USB capture pseudo-interfaces to 'usbmonN' to avoid
+    collision with 'usbN' USB network cards (closes: #516089).
+
+ -- Romain Francoise <rfrancoise@debian.org>  Tue, 16 Jun 2009 14:59:24 +0200
+
 libpcap (1.0.0-1) unstable; urgency=low
 
   * Upload to unstable.
