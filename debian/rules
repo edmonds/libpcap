@@ -55,8 +55,9 @@ binary-arch: build install
         # build libpcap${major} package by moving files from libpcap0.8-dev
         #
 	dh_movefiles -plibpcap$(major) --sourcedir=debian/libpcap0.8-dev \
-		usr/lib/libpcap.so.$(major)        \
-		usr/lib/libpcap.so.$(version)
+		usr/lib/libpcap.so.$(major)				 \
+		usr/lib/libpcap.so.$(version)				 \
+		usr/share/man/man7/pcap-filter.7
 	dh_installdocs -a -A debian/README.Debian
 	dh_installexamples -a
 	dh_installmenu -a
