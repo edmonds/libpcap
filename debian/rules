@@ -6,7 +6,7 @@ major   := 0.8
 version := $(shell dpkg-parsechangelog | \
 	     sed -rn 's/^Version: ([0-9.]*).*/\1/p')
 
-export CFLAGS=-D_FILE_OFFSET_BITS=64 -g
+export CFLAGS += -D_FILE_OFFSET_BITS=64 -g
 
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
         CFLAGS += -O0
