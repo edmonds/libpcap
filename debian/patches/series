@@ -1,4 +1,5 @@
 10_shared_lib.diff
+15_linker_script.diff
 20-fix-any-intf.diff
 20-fix-rename-usbmon.diff
 30_man_fixes.diff
