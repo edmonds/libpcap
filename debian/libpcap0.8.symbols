@@ -1,7 +1,4 @@
 libpcap.so.0.8 libpcap0.8 #MINVER#
- __pcap_atodn@Base 0.9.8
- __pcap_atoin@Base 0.9.8
- __pcap_nametodnaddr@Base 0.9.8
  bpf_dump@Base 0.9.8
  bpf_filter@Base 0.9.8
  bpf_image@Base 0.9.8

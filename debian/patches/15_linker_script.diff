@@ -16,12 +16,9 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
 --- /dev/null
 +++ b/libpcap.lds
-@@ -0,0 +1,88 @@
+@@ -0,0 +1,85 @@
 +{
 +  global:
-+    __pcap_atodn;
-+    __pcap_atoin;
-+    __pcap_nametodnaddr;
 +    bpf_dump;
 +    bpf_filter;
 +    bpf_filter;
