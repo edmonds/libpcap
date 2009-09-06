@@ -1,3 +1,22 @@
+libpcap (1.0.0-3) unstable; urgency=low
+
+  [ Romain Francoise ]
+  * debian/patches/15_linker_script.diff: New patch; don't export private
+    symbols and leave only the public interface.  Based on patch by Marco
+    d'Itri.
+  * debian/libpcap0.8.symbols: New file, adding symbols (closes: #543167).
+    Based on patch by Marco d'Itri.
+  * debian/libpcap0.8.shlibs: Removed.
+  * debian/control: Set Standards-Version to 3.8.3.
+  * debian/control: Add missing dependencies on ${misc:Depends}.
+
+  [ Marco d'Itri ]
+  * debian/rules: Preserve $CFLAGS set by dpkg-buildpackage.
+  * debian/README.Debian: Do not mention /etc/modules.conf, which is long
+    gone.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 06 Sep 2009 14:19:40 +0200
+
 libpcap (1.0.0-2) unstable; urgency=low
 
   * debian/rules: Move pcap-filter(7) man page to libpcap0.8 from
