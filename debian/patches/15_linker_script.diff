@@ -16,14 +16,12 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
 --- /dev/null
 +++ b/libpcap.lds
-@@ -0,0 +1,85 @@
+@@ -0,0 +1,83 @@
 +{
 +  global:
 +    bpf_dump;
 +    bpf_filter;
-+    bpf_filter;
 +    bpf_image;
-+    bpf_validate;
 +    bpf_validate;
 +    eproto_db;
 +    pcap_breakloop;
