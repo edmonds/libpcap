@@ -3,5 +3,6 @@
 20-fix-any-intf.diff
 20-fix-rename-usbmon.diff
 30_man_fixes.diff
+40_fix_bus_usb_path.diff
 50_kfreebsd.diff
 50_autotools-dev.diff

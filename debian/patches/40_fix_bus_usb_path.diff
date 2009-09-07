@@ -1,0 +1,13 @@
+Index: libpcap-1.0.0/pcap-usb-linux.c
+===================================================================
+--- libpcap-1.0.0.orig/pcap-usb-linux.c	2009-08-03 12:28:21.627395984 -0400
++++ libpcap-1.0.0/pcap-usb-linux.c	2009-08-03 12:28:29.528496263 -0400
+@@ -63,7 +63,7 @@
+ 
+ #define USB_IFACE "usbmon"
+ #define USB_TEXT_DIR "/sys/kernel/debug/usbmon"
+-#define USB_BUS_DIR "/proc/bus/usb"
++#define USB_BUS_DIR "/dev/bus/usb"
+ #define USB_LINE_LEN 4096
+ 
+ 
