@@ -1,9 +1,19 @@
+libpcap (1.0.0-4) unstable; urgency=low
+
+  * debian/patches/40_fix_bus_usb_path.diff: New patch from Ubuntu
+    changing the usb bus path from /proc/bus/usb to /dev/bus/usb, thanks
+    to Andy Matteson <xt.knight@gmail.com> (LP: #408478).
+  * debian/patches/series: Update.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Mon, 07 Sep 2009 20:18:58 +0200
+
 libpcap (1.0.0-3) unstable; urgency=low
 
   [ Romain Francoise ]
   * debian/patches/15_linker_script.diff: New patch; don't export private
     symbols and leave only the public interface.  Based on patch by Marco
     d'Itri.
+  * debian/patches/series: Update.
   * debian/libpcap0.8.symbols: New file, adding symbols (closes: #543167).
     Based on patch by Marco d'Itri.
   * debian/libpcap0.8.shlibs: Removed.
