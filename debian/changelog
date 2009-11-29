@@ -1,3 +1,21 @@
+libpcap (1.0.0-5) unstable; urgency=low
+
+  * Switch to 3.0 (quilt) source format:
+    + Drop build-depends on quilt.
+    + Remove patch/unpatch logic from debian/rules.
+    + Remove README.source.
+    + Refresh all patches (and add missing headers).
+  * Use dh(1):
+    + debian/compat: Bump to 7.
+    + debian/control: Build-depend on debhelper (>= 7.0.50~).
+    + debian/rules: Simplify.
+    + debian/libpcap0.8.dirs: Removed.
+    + debian/patches/10_install.diff: New patch, create $(bindir) before
+      installing files in it.
+  * debian/watch: New file.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 29 Nov 2009 14:25:39 +0100
+
 libpcap (1.0.0-4) unstable; urgency=low
 
   * debian/patches/40_fix_bus_usb_path.diff: New patch from Ubuntu
