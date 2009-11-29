@@ -6,11 +6,15 @@ Date:   Thu Mar 19 09:37:03 2009 -0700
     as not to collide with the "usbN" names for USB-based networking
     devices.
 
-diff --git a/inet.c b/inet.c
-index 9cd7df7..11efbf4 100644
+---
+ inet.c           |    2 +-
+ pcap-linux.c     |    2 +-
+ pcap-usb-linux.c |    2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
 --- a/inet.c
 +++ b/inet.c
-@@ -669,7 +669,7 @@ pcap_lookupnet(device, netp, maskp, errbuf)
+@@ -669,7 +669,7 @@
  	    || strstr(device, "bluetooth") != NULL
  #endif
  #ifdef PCAP_SUPPORT_USB
@@ -19,11 +23,9 @@ index 9cd7df7..11efbf4 100644
  #endif
  	    ) {
  		*netp = *maskp = 0;
-diff --git a/pcap-linux.c b/pcap-linux.c
-index 43dfe92..9314eec 100644
 --- a/pcap-linux.c
 +++ b/pcap-linux.c
-@@ -324,7 +324,7 @@ pcap_create(const char *device, char *ebuf)
+@@ -322,7 +322,7 @@
  #endif
  
  #ifdef PCAP_SUPPORT_USB
@@ -32,16 +34,14 @@ index 43dfe92..9314eec 100644
  		return usb_create(device, ebuf);
  	}
  #endif
-diff --git a/pcap-usb-linux.c b/pcap-usb-linux.c
-index 93c3f6d..358865c 100644
 --- a/pcap-usb-linux.c
 +++ b/pcap-usb-linux.c
-@@ -64,7 +64,7 @@ static const char rcsid[] _U_ =
- #include <linux/usbdevice_fs.h>
- #endif
+@@ -61,7 +61,7 @@
+ #include <sys/ioctl.h>
+ #include <sys/mman.h>
  
 -#define USB_IFACE "usb"
 +#define USB_IFACE "usbmon"
  #define USB_TEXT_DIR "/sys/kernel/debug/usbmon"
- #define SYS_USB_BUS_DIR "/sys/bus/usb/devices"
- #define PROC_USB_BUS_DIR "/proc/bus/usb"
+ #define USB_BUS_DIR "/proc/bus/usb"
+ #define USB_LINE_LEN 4096
