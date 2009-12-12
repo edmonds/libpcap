@@ -1,3 +1,10 @@
+libpcap (1.0.0-6) unstable; urgency=low
+
+  * debian/patches/50_kfreebsd.diff: Disable zerocopy BPF detection
+    (it's supported in FreeBSD 8.0+ only).
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sat, 12 Dec 2009 18:03:47 +0100
+
 libpcap (1.0.0-5) unstable; urgency=low
 
   * Switch to 3.0 (quilt) source format:
