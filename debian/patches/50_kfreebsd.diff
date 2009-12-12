@@ -1,8 +1,8 @@
 Support for GNU/kFreeBSD, by Aurelien Jarno.
 ---
- configure    |    3 ++-
- configure.in |    3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+ configure    |   60 +----------------------------------------------------------
+ configure.in |   17 +---------------
+ 2 files changed, 4 insertions(+), 73 deletions(-)
 
 --- a/configure.in
 +++ b/configure.in
@@ -23,6 +23,27 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  	V_PCAP=bpf
  elif test -r /usr/include/net/pfilt.h ; then
  	V_PCAP=pf
+@@ -368,20 +369,6 @@
+ 	# Check whether we have the *BSD-style ioctls.
+ 	#
+ 	AC_CHECK_HEADERS(net/if_media.h)
+-
+-	AC_MSG_CHECKING(whether the system supports zerocopy BPF)
+-	AC_TRY_COMPILE(
+-	    [#include <sys/socket.h>
+-	    #include <sys/ioctl.h>
+-	    #include <net/if.h>
+-	    #include <net/bpf.h>],
+-	    [return (BIOCROTZBUF + BPF_BUFMODE_ZBUF);],
+-	    [  
+-		AC_MSG_RESULT(yes)
+-		AC_DEFINE(HAVE_ZEROCOPY_BPF, 1,
+-		[define if the system supports zerocopy BPF])
+-	    ],
+-	    AC_MSG_RESULT(no))
+ 	;;
+ 
+ dag)
 --- a/configure
 +++ b/configure
 @@ -4791,6 +4791,7 @@
@@ -42,3 +63,67 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  	V_PCAP=bpf
  elif test -r /usr/include/net/pfilt.h ; then
  	V_PCAP=pf
+@@ -7055,63 +7056,6 @@
+ fi
+ 
+ done
+-
+-
+-	{ echo "$as_me:$LINENO: checking whether the system supports zerocopy BPF" >&5
+-echo $ECHO_N "checking whether the system supports zerocopy BPF... $ECHO_C" >&6; }
+-	cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-#include <sys/socket.h>
+-	    #include <sys/ioctl.h>
+-	    #include <net/if.h>
+-	    #include <net/bpf.h>
+-int
+-main ()
+-{
+-return (BIOCROTZBUF + BPF_BUFMODE_ZBUF);
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-rm -f conftest.$ac_objext
+-if { (ac_try="$ac_compile"
+-case "(($ac_try" in
+-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+-  *) ac_try_echo=$ac_try;;
+-esac
+-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+-  (eval "$ac_compile") 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } && {
+-	 test -z "$ac_c_werror_flag" ||
+-	 test ! -s conftest.err
+-       } && test -s conftest.$ac_objext; then
+-
+-		{ echo "$as_me:$LINENO: result: yes" >&5
+-echo "${ECHO_T}yes" >&6; }
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define HAVE_ZEROCOPY_BPF 1
+-_ACEOF
+-
+-
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-	{ echo "$as_me:$LINENO: result: no" >&5
+-echo "${ECHO_T}no" >&6; }
+-fi
+-
+-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+ 	;;
+ 
+ dag)
