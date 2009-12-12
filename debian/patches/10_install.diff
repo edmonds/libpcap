@@ -5,7 +5,7 @@ Create $(bindir) before installing files in it.
 
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -445,6 +445,8 @@
+@@ -484,6 +484,8 @@
  	    $(DESTDIR)$(includedir)/pcap-bpf.h
  	$(INSTALL_DATA) $(srcdir)/pcap-namedb.h \
  	    $(DESTDIR)$(includedir)/pcap-namedb.h
