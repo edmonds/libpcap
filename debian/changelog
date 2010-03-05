@@ -208,7 +208,7 @@ libpcap0.8 (0.9.3-1) unstable; urgency=low
 
   * New upstream release: this is a new major version of libpcap but it is
     API and ABI compatible with libpcap0.8 so the old soname and package
-    names were kept to avoid uncessary transition of all packages.
+    names were kept to avoid unnecessary transition of all packages.
 
   * debian/libpcap0.8.shlibs: New file.
 
