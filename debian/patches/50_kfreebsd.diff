@@ -1,8 +1,8 @@
-Support for GNU/kFreeBSD, by Aurelien Jarno.
+Support for GNU/kFreeBSD, by Aurelien Jarno and others.
 ---
- configure    |   60 +----------------------------------------------------------
- configure.in |   17 +---------------
- 2 files changed, 4 insertions(+), 73 deletions(-)
+ configure    |   62 ++---------------------------------------------------------
+ configure.in |   19 ++----------------
+ 2 files changed, 6 insertions(+), 75 deletions(-)
 
 --- a/configure.in
 +++ b/configure.in
@@ -44,6 +44,15 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  	    #
  	    # Check whether we have struct BPF_TIMEVAL.
  	    #
+@@ -1234,7 +1221,7 @@
+ 	MAN_MISC_INFO=5
+ 	;;
+ 
+-linux*|freebsd*|netbsd*|openbsd*|dragonfly*)
++linux*|freebsd*|netbsd*|openbsd*|dragonfly*|kfreebsd*)
+ 	DYEXT="so"
+ 
+ 	#
 --- a/configure
 +++ b/configure
 @@ -5440,6 +5440,7 @@
@@ -127,3 +136,12 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  	    #
  	    # Check whether we have struct BPF_TIMEVAL.
  	    #
+@@ -9607,7 +9551,7 @@
+ 	MAN_MISC_INFO=5
+ 	;;
+ 
+-linux*|freebsd*|netbsd*|openbsd*|dragonfly*)
++linux*|freebsd*|netbsd*|openbsd*|dragonfly*|kfreebsd*)
+ 	DYEXT="so"
+ 
+ 	#
