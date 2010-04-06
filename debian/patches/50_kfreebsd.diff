@@ -6,7 +6,7 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
 
 --- a/configure.in
 +++ b/configure.in
-@@ -35,6 +35,7 @@
+@@ -104,6 +104,7 @@
  dnl
  AC_CHECK_HEADERS(sys/ioccom.h sys/sockio.h limits.h paths.h)
  AC_CHECK_HEADERS(net/pfvar.h, , , [#include <sys/types.h>
@@ -14,7 +14,7 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  #include <sys/socket.h>
  #include <net/if.h>])
  if test "$ac_cv_header_net_pfvar_h" = yes; then
-@@ -230,7 +231,7 @@
+@@ -304,7 +305,7 @@
  	#
  	V_PCAP=bpf
  	AC_DEFINE(HAVE_CLONING_BPF,1,[define if you have a cloning BPF device])
@@ -23,11 +23,10 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  	V_PCAP=bpf
  elif test -r /usr/include/net/pfilt.h ; then
  	V_PCAP=pf
-@@ -368,20 +369,6 @@
- 	# Check whether we have the *BSD-style ioctls.
+@@ -464,20 +465,6 @@
  	#
  	AC_CHECK_HEADERS(net/if_media.h)
--
+ 
 -	AC_MSG_CHECKING(whether the system supports zerocopy BPF)
 -	AC_TRY_COMPILE(
 -	    [#include <sys/socket.h>
@@ -41,12 +40,13 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
 -		[define if the system supports zerocopy BPF])
 -	    ],
 -	    AC_MSG_RESULT(no))
- 	;;
- 
- dag)
+-
+ 	    #
+ 	    # Check whether we have struct BPF_TIMEVAL.
+ 	    #
 --- a/configure
 +++ b/configure
-@@ -4791,6 +4791,7 @@
+@@ -5440,6 +5440,7 @@
  cat >>conftest.$ac_ext <<_ACEOF
  /* end confdefs.h.  */
  #include <sys/types.h>
@@ -54,7 +54,7 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  #include <sys/socket.h>
  #include <net/if.h>
  
-@@ -6272,7 +6273,7 @@
+@@ -6923,7 +6924,7 @@
  #define HAVE_CLONING_BPF 1
  _ACEOF
  
@@ -63,11 +63,10 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
  	V_PCAP=bpf
  elif test -r /usr/include/net/pfilt.h ; then
  	V_PCAP=pf
-@@ -7055,63 +7056,6 @@
- fi
+@@ -7665,63 +7666,6 @@
  
  done
--
+ 
 -
 -	{ echo "$as_me:$LINENO: checking whether the system supports zerocopy BPF" >&5
 -echo $ECHO_N "checking whether the system supports zerocopy BPF... $ECHO_C" >&6; }
@@ -124,6 +123,7 @@ Support for GNU/kFreeBSD, by Aurelien Jarno.
 -fi
 -
 -rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
- 	;;
- 
- dag)
+-
+ 	    #
+ 	    # Check whether we have struct BPF_TIMEVAL.
+ 	    #

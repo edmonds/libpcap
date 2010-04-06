@@ -1,9 +1,8 @@
 Misc. fixes to the upstream man page.
+
 ---
- pcap.3pcap.in                   |    2 +-
- pcap_datalink_val_to_name.3pcap |    2 +-
- pcap_loop.3pcap                 |    5 ++++-
- 3 files changed, 6 insertions(+), 3 deletions(-)
+ pcap.3pcap.in |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 --- a/pcap.3pcap.in
 +++ b/pcap.3pcap.in
@@ -16,28 +15,3 @@ Misc. fixes to the upstream man page.
  usermod(1M)
  .SH AUTHORS
  The original authors of libpcap are:
---- a/pcap_loop.3pcap
-+++ b/pcap_loop.3pcap
-@@ -89,7 +89,10 @@
- .ft R
- .PP
- .I callback
--specifies a routine to be called with three arguments:
-+specifies a
-+.I
-+pcap_handler
-+routine to be called with three arguments:
- a
- .I u_char
- pointer which is passed in the
---- a/pcap_datalink_val_to_name.3pcap
-+++ b/pcap_datalink_val_to_name.3pcap
-@@ -19,7 +19,7 @@
- .\" WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- .\" MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
- .\"
--.TH PCAP_DATALINK_VAL_TO_NAME 3 "4 April 2008"
-+.TH PCAP_DATALINK_VAL_TO_NAME 3PCAP "4 April 2008"
- .SH NAME
- pcap_datalink_val_to_name, pcap_datalink_val_to_description \- get a
- name or description for a link-layer header type value

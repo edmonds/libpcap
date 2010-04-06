@@ -6,7 +6,7 @@ Use a linker script.
 
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -64,7 +64,7 @@
+@@ -67,7 +67,7 @@
  
  # Standard CFLAGS
  CFLAGS = $(CCOPT) $(INCLS) $(DEFS)
