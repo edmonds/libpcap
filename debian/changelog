@@ -1,3 +1,20 @@
+libpcap (1.1.1-1) unstable; urgency=low
+
+  * New upstream release (closes: #576002):
+    + No changes to existing API/ABI; no new symbols.
+    + Uses the new path to usbmon in /sys (closes: #570455).
+    + Updates USB packet header definition (closes: #571028).
+    + pcap_loop() handles device removal gracefully again
+      (closes: #520393).
+    + pcap-config no longer outputs an extra space after -L
+      (closes: #567570).
+  * debian/patches/10_install.diff: Dropped, merged upstream.
+  * debian/patches/20-fix-any-intf.diff: Ditto.
+  * debian/patches/20-fix-rename-usbmon.diff: Ditto.
+  * debian/control: Set Standards-Version to 3.8.4.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Tue, 06 Apr 2010 19:15:26 +0200
+
 libpcap (1.0.0-6) unstable; urgency=low
 
   * debian/patches/50_kfreebsd.diff: Disable zerocopy BPF detection
