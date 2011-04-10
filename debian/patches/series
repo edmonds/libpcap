@@ -3,4 +3,5 @@
 30_man_fixes.diff
 40_fix_bus_usb_path.diff
 50_kfreebsd.diff
+55_hurd.diff
 50_autotools-dev.diff
