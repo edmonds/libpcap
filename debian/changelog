@@ -1,3 +1,13 @@
+libpcap (1.1.1-3) unstable; urgency=low
+
+  * Make the configure script recognize GNU/Hurd; patch from Svante Signell
+    (closes: #612834).
+  * debian/control: Set Standards-Version to 3.9.1.
+  * debian/patches/30_man_fixes.diff: Fix a few typos in man pages
+    detected by lintian.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 10 Apr 2011 20:39:37 +0200
+
 libpcap (1.1.1-2) unstable; urgency=low
 
   * debian/patches/50_kfreebsd.diff: Fix configure script to properly
