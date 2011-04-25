@@ -4,6 +4,10 @@ libpcap (1.1.1-4) UNRELEASED; urgency=low
     when the bonding module is loaded (closes: #612803).
   * debian/patches/50_kfreebsd.diff: Enable zerocopy BPF again.
 
+  [ Robert S. Edmonds ]
+  * Backport commit ea9432fabd from upstream to fix corruption of snapshot
+    length on live captures (closes: #623868).
+
  -- Romain Francoise <rfrancoise@debian.org>  Sat, 16 Apr 2011 15:49:38 +0200
 
 libpcap (1.1.1-3) unstable; urgency=low
