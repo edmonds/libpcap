@@ -1,3 +1,11 @@
+libpcap (1.1.1-5) unstable; urgency=low
+
+  * Fix build issue on kfreebsd which causes FTBFS in applications,
+    introduced in 1.1.1-4. Thanks to Jakub Wilk <jwilk@debian.org> for the
+    patch (closes: #626232).
+
+ -- Romain Francoise <rfrancoise@debian.org>  Tue, 10 May 2011 21:10:53 +0200
+
 libpcap (1.1.1-4) unstable; urgency=low
 
   [ Romain Francoise ]
