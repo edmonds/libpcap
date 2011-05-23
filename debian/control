@@ -34,9 +34,9 @@ Description: development library and header files for libpcap0.8
  .
  Since almost every system vendor provides a different interface for
  packet capture, and since there are several tools that require this
- functionality, we've created this system-independent API to ease in
- porting and to alleviate the need for several system-dependent packet
- capture modules in each application.
+ functionality, the libpcap authors created this system-independent API
+ to ease in porting and to alleviate the need for several
+ system-dependent packet capture modules in each application.
 
 Package: libpcap0.8
 Section: libs
@@ -50,9 +50,9 @@ Description: system interface for user-level packet capture
  .
  Since almost every system vendor provides a different interface for
  packet capture, and since there are several tools that require this
- functionality, we've created this system-independent API to ease in
- porting and to alleviate the need for several system-dependent packet
- capture modules in each application.
+ functionality, the libpcap authors created this system-independent API
+ to ease in porting and to alleviate the need for several
+ system-dependent packet capture modules in each application.
 
 Package: libpcap0.8-dbg
 Section: debug
