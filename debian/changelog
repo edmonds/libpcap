@@ -1,3 +1,13 @@
+libpcap (1.1.1-6) unstable; urgency=low
+
+  * debian/patches/47_ip6_protochain.patch: New patch; fixes a crash in
+    the BPF interpreter with "ip6 protochain" on 64-bit platforms
+    (closes: #627342).
+  * debian/control: Avoid "we" in long description (closes: #623607).
+  * debian/control: Set Standards-Version to 3.9.2.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Mon, 23 May 2011 19:13:27 +0200
+
 libpcap (1.1.1-5) unstable; urgency=low
 
   * Fix build issue on kfreebsd which causes FTBFS in applications,
