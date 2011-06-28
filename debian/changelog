@@ -1,3 +1,14 @@
+libpcap (1.1.1-7) unstable; urgency=low
+
+  * Build for multiarch:
+    + Set debhelper compat level to 9, bump build-depends.
+    + Set Multi-Arch: same on libpcap0.8 and add required Pre-Depends.
+    + Adjust install paths.
+  * debian/patches/10_shared_lib.diff: Prevent 'pcap-config --libs' from
+    adding an rpath now that libdir != /usr/lib.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Tue, 28 Jun 2011 20:14:43 +0200
+
 libpcap (1.1.1-6) unstable; urgency=low
 
   * debian/patches/47_ip6_protochain.patch: New patch; fixes a crash in
