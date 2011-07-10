@@ -7,14 +7,12 @@ Subject: [PATCH] Fix the calculation of the frame size in memory-mapped
 The old calculation truncated packets to a smaller value than the
 snapshot length.
 ---
- pcap-linux.c |   49 ++++++++++++++++++++++++++++++++++++++++++++++---
- 1 files changed, 46 insertions(+), 3 deletions(-)
+ pcap-linux.c |   61 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 58 insertions(+), 3 deletions(-)
 
-diff --git a/pcap-linux.c b/pcap-linux.c
-index af12543..74ac21f 100644
 --- a/pcap-linux.c
 +++ b/pcap-linux.c
-@@ -3057,15 +3057,58 @@ create_ring(pcap_t *handle)
+@@ -3057,15 +3057,70 @@
  {
  	unsigned i, j, frames_per_block;
  	struct tpacket_req req;
@@ -38,11 +36,23 @@ index af12543..74ac21f 100644
 +		snprintf(handle->errbuf, PCAP_ERRBUF_SIZE, "getsockopt: %s", pcap_strerror(errno));
 +		return -1;
 +	}
++#ifdef PACKET_RESERVE
 +	len = sizeof(tp_reserve);
 +	if (getsockopt(handle->fd, SOL_PACKET, PACKET_RESERVE, &tp_reserve, &len) < 0) {
-+		snprintf(handle->errbuf, PCAP_ERRBUF_SIZE, "getsockopt: %s", pcap_strerror(errno));
-+		return -1;
++		if (errno != ENOPROTOOPT) {
++			/*
++			 * ENOPROTOOPT means "kernel doesn't support
++			 * PACKET_RESERVE", in which case we fall back
++			 * as best we can.
++			 */
++			snprintf(handle->errbuf, PCAP_ERRBUF_SIZE, "getsockopt: %s", pcap_strerror(errno));
++			return -1;
++		}
++		tp_reserve = 0;	/* older kernel, reserve not supported */
 +	}
++#else
++	tp_reserve = 0;
++#endif
 +	maclen = (sk_type == SOCK_DGRAM) ? 0 : MAX_LINKHEADER_SIZE;
 +		/* XXX: in the kernel maclen is calculated from
 +		 * LL_ALLOCATED_SPACE(dev) and vnet_hdr.hdr_len
@@ -76,6 +86,3 @@ index af12543..74ac21f 100644
  	req.tp_frame_nr = handle->opt.buffer_size/req.tp_frame_size;
  
  	/* compute the minumum block size that will handle this frame. 
--- 
-1.7.4.4
-
