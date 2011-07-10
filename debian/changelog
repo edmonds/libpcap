@@ -1,3 +1,12 @@
+libpcap (1.1.1-8) unstable; urgency=low
+
+  * Backport additional changes from upstream to make the fix for
+    CVE-2011-1935 work on kernels without support for PACKET_RESERVE
+    (closes: #625443).
+  * Retroactively mention CVE id in 1.1.1-4 changelog entry.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Sun, 10 Jul 2011 18:47:31 +0200
+
 libpcap (1.1.1-7) unstable; urgency=low
 
   * Build for multiarch:
@@ -36,7 +45,7 @@ libpcap (1.1.1-4) unstable; urgency=low
 
   [ Robert S. Edmonds ]
   * Backport commit ea9432fabd from upstream to fix corruption of snapshot
-    length on live captures (closes: #623868).
+    length on live captures (CVE-2011-1935) (closes: #623868).
 
  -- Romain Francoise <rfrancoise@debian.org>  Sat, 30 Apr 2011 12:30:27 +0200
 
