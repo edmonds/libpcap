@@ -1,7 +1,5 @@
 #!/usr/bin/make -f
 
-export CFLAGS += -D_FILE_OFFSET_BITS=64
-
 %:
 	dh $@
 
