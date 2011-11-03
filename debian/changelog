@@ -1,3 +1,10 @@
+libpcap (1.1.1-10) unstable; urgency=low
+
+  * Cherry-pick commit 93583909e1 from upstream to fix detection of VLAN
+    acceleration support in the configure script (LP: #838952).
+
+ -- Romain Francoise <rfrancoise@debian.org>  Thu, 03 Nov 2011 19:29:58 +0100
+
 libpcap (1.1.1-9) unstable; urgency=low
 
   * debian/rules: Stop setting CFLAGS; it's no longer useful
