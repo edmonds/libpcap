@@ -5,6 +5,7 @@
 45_bonding.diff
 46_tpacket_alignment.diff
 47_ip6_protochain.patch
+48_vlan_acceleration.diff
 50_kfreebsd.diff
 50_autotools-dev.diff
 55_hurd.diff
