@@ -4,7 +4,7 @@
 40_fix_bus_usb_path.diff
 45_bonding.diff
 46_tpacket_alignment.diff
-47_ip6_protochain.patch
+47_ip6_protochain.diff
 48_vlan_acceleration.diff
 50_kfreebsd.diff
 50_autotools-dev.diff
