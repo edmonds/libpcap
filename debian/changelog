@@ -1,6 +1,6 @@
 libpcap (1.1.1-9) unstable; urgency=low
 
-  * debian/rules: Stop settings CFLAGS; it's no longer useful
+  * debian/rules: Stop setting CFLAGS; it's no longer useful
     (closes: #647300).
   * Override 'package-needs-versioned-debhelper-build-depends'.
 
