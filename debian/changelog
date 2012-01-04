@@ -1,8 +1,10 @@
 libpcap (1.2.1-1) unstable; urgency=low
 
-  * New upstream version.
+  * New upstream version. API additions: pcap_set_tstamp_type(),
+    pcap_{list,free}_tstamp_types(), pcap_tstamp_type_name_to_val(),
+    pcap_tstamp_type_val_to_{description,name}().
 
- -- Romain Francoise <rfrancoise@debian.org>  Wed, 04 Jan 2012 20:09:54 +0100
+ -- Romain Francoise <rfrancoise@debian.org>  Wed, 04 Jan 2012 20:46:49 +0100
 
 libpcap (1.1.1-10) unstable; urgency=low
 
