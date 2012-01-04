@@ -8,15 +8,15 @@ Support for GNU/kFreeBSD, by Aurelien Jarno and others.
 
 --- a/configure.in
 +++ b/configure.in
-@@ -104,6 +104,7 @@
- dnl
- AC_CHECK_HEADERS(sys/ioccom.h sys/sockio.h limits.h paths.h)
+@@ -106,6 +106,7 @@
+ AC_CHECK_HEADERS(linux/types.h)
+ AC_CHECK_HEADERS(linux/if_packet.h netpacket/packet.h netpacket/if_packet.h)
  AC_CHECK_HEADERS(net/pfvar.h, , , [#include <sys/types.h>
 +#include <net/if_pflog.h>
  #include <sys/socket.h>
  #include <net/if.h>])
  if test "$ac_cv_header_net_pfvar_h" = yes; then
-@@ -304,7 +305,7 @@
+@@ -306,7 +307,7 @@
  	#
  	V_PCAP=bpf
  	AC_DEFINE(HAVE_CLONING_BPF,1,[define if you have a cloning BPF device])
@@ -25,7 +25,7 @@ Support for GNU/kFreeBSD, by Aurelien Jarno and others.
  	V_PCAP=bpf
  elif test -r /usr/include/net/pfilt.h ; then
  	V_PCAP=pf
-@@ -490,6 +491,7 @@
+@@ -506,6 +507,7 @@
  #endif
  #include <net/bpf.h>
  		    ])
@@ -33,18 +33,9 @@ Support for GNU/kFreeBSD, by Aurelien Jarno and others.
  	;;
  
  dag)
-@@ -1234,7 +1236,7 @@
- 	MAN_MISC_INFO=5
- 	;;
- 
--linux*|freebsd*|netbsd*|openbsd*|dragonfly*)
-+linux*|freebsd*|netbsd*|openbsd*|dragonfly*|kfreebsd*)
- 	DYEXT="so"
- 
- 	#
 --- a/configure
 +++ b/configure
-@@ -5440,6 +5440,7 @@
+@@ -5743,6 +5743,7 @@
  cat >>conftest.$ac_ext <<_ACEOF
  /* end confdefs.h.  */
  #include <sys/types.h>
@@ -52,7 +43,7 @@ Support for GNU/kFreeBSD, by Aurelien Jarno and others.
  #include <sys/socket.h>
  #include <net/if.h>
  
-@@ -6923,7 +6924,7 @@
+@@ -7226,7 +7227,7 @@
  #define HAVE_CLONING_BPF 1
  _ACEOF
  
@@ -61,7 +52,7 @@ Support for GNU/kFreeBSD, by Aurelien Jarno and others.
  	V_PCAP=bpf
  elif test -r /usr/include/net/pfilt.h ; then
  	V_PCAP=pf
-@@ -7795,6 +7796,7 @@
+@@ -8227,6 +8228,7 @@
  
  fi
  
@@ -69,28 +60,9 @@ Support for GNU/kFreeBSD, by Aurelien Jarno and others.
  	;;
  
  dag)
-@@ -9607,7 +9609,7 @@
- 	MAN_MISC_INFO=5
- 	;;
- 
--linux*|freebsd*|netbsd*|openbsd*|dragonfly*)
-+linux*|freebsd*|netbsd*|openbsd*|dragonfly*|kfreebsd*)
- 	DYEXT="so"
- 
- 	#
---- a/pcap-bpf.c
-+++ b/pcap-bpf.c
-@@ -31,6 +31,7 @@
- #ifdef HAVE_ZEROCOPY_BPF
- #include <sys/mman.h>
- #endif
-+#include <time.h>
- #include <sys/time.h>
- #include <sys/socket.h>
- /*
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -426,7 +426,7 @@
+@@ -445,7 +445,7 @@
  $(SHAREDLIB): $(OBJ_PIC)
  	-@rm -f $@
  	-@rm -f $(SOLIBRARY) $(SOLIBRARY).$(MAJ)
