@@ -1,3 +1,11 @@
+libpcap (1.2.1-2) unstable; urgency=low
+
+  * Cherry-pick commit d55b6f4f1b from upstream to make absence of
+    Netfilter support in the kernel non-fatal (closes: #672337).
+  * debian/control: Set Standards-Version to 3.9.3.
+
+ -- Romain Francoise <rfrancoise@debian.org>  Thu, 10 May 2012 20:37:13 +0200
+
 libpcap (1.2.1-1) unstable; urgency=low
 
   * New upstream version. API additions: pcap_set_tstamp_type(),
