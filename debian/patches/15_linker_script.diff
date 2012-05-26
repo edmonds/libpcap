@@ -7,12 +7,12 @@ Use a linker script.
  # Standard CFLAGS
  FULL_CFLAGS = $(CCOPT) $(INCLS) $(DEFS) $(CFLAGS)
 -CFLAGS_SHARED = -shared -Wl,-soname,$(SOLIBRARY).$(MAJ)
-+CFLAGS_SHARED = -shared -Wl,-soname,$(SOLIBRARY).$(MAJ) -Wl,--version-script=libpcap.lds
++CFLAGS_SHARED = -shared -Wl,-soname,$(SOLIBRARY).$(MAJ) -Wl,--version-script=libpcap-symbols.lds
  
  INSTALL = @INSTALL@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
 --- /dev/null
-+++ b/libpcap.lds
++++ b/libpcap-symbols.lds
 @@ -0,0 +1,90 @@
 +{
 +  global:
