@@ -18,10 +18,12 @@ build a shared library.
  #
  # You shouldn't need to edit anything below.
  #
-@@ -61,6 +69,7 @@
+@@ -60,7 +68,8 @@
+ PROG=libpcap
  
  # Standard CFLAGS
- FULL_CFLAGS = $(CCOPT) $(INCLS) $(DEFS) $(CFLAGS)
+-FULL_CFLAGS = $(CCOPT) $(INCLS) $(DEFS) $(CFLAGS)
++FULL_CFLAGS = $(CCOPT) $(INCLS) $(DEFS) $(CFLAGS) $(CPPFLAGS)
 +CFLAGS_SHARED = -shared -Wl,-soname,$(SOLIBRARY).$(MAJ)
  
  INSTALL = @INSTALL@
