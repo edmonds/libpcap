@@ -72,7 +72,7 @@ build a shared library.
 +$(SHAREDLIB): $(OBJ_PIC)
 +	-@rm -f $@
 +	-@rm -f $(SOLIBRARY) $(SOLIBRARY).$(MAJ)
-+	$(CC) $(CFLAGS_SHARED) -o $(SHAREDLIB) $(OBJ_PIC) -lc
++	$(CC) $(CFLAGS_SHARED) $(LDFLAGS) -o $(SHAREDLIB) $(OBJ_PIC) -lc $(LIBS)
 +	ln -s $(SHAREDLIB) $(SOLIBRARY).$(MAJ)
 +	ln -s $(SOLIBRARY).$(MAJ) $(SOLIBRARY)
 +

@@ -27,14 +27,3 @@ Support for GNU/kFreeBSD, by Aurelien Jarno and others.
  	;;
  
  dag)
---- a/Makefile.in
-+++ b/Makefile.in
-@@ -445,7 +445,7 @@
- $(SHAREDLIB): $(OBJ_PIC)
- 	-@rm -f $@
- 	-@rm -f $(SOLIBRARY) $(SOLIBRARY).$(MAJ)
--	$(CC) $(CFLAGS_SHARED) -o $(SHAREDLIB) $(OBJ_PIC) -lc
-+	$(CC) $(CFLAGS_SHARED) -o $(SHAREDLIB) $(OBJ_PIC) -lc $(LIBS)
- 	ln -s $(SHAREDLIB) $(SOLIBRARY).$(MAJ)
- 	ln -s $(SOLIBRARY).$(MAJ) $(SOLIBRARY)
- 
