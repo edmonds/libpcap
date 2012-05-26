@@ -1,10 +1,4 @@
 Support for GNU/kFreeBSD, by Aurelien Jarno and others.
----
- Makefile.in  |    2 +-
- configure    |    6 ++++--
- configure.in |    6 ++++--
- pcap-bpf.c   |    1 +
- 4 files changed, 10 insertions(+), 5 deletions(-)
 
 --- a/configure.in
 +++ b/configure.in
@@ -29,33 +23,6 @@ Support for GNU/kFreeBSD, by Aurelien Jarno and others.
  #endif
  #include <net/bpf.h>
  		    ])
-+	    LIBS="$LIBS -lrt"
- 	;;
- 
- dag)
---- a/configure
-+++ b/configure
-@@ -5743,6 +5743,7 @@
- cat >>conftest.$ac_ext <<_ACEOF
- /* end confdefs.h.  */
- #include <sys/types.h>
-+#include <net/if_pflog.h>
- #include <sys/socket.h>
- #include <net/if.h>
- 
-@@ -7226,7 +7227,7 @@
- #define HAVE_CLONING_BPF 1
- _ACEOF
- 
--elif test -r /dev/bpf0 ; then
-+elif test -r /dev/bpf0 || test -r /usr/include/net/bpf.h ; then
- 	V_PCAP=bpf
- elif test -r /usr/include/net/pfilt.h ; then
- 	V_PCAP=pf
-@@ -8227,6 +8228,7 @@
- 
- fi
- 
 +	    LIBS="$LIBS -lrt"
  	;;
  

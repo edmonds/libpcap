@@ -1,7 +1,4 @@
 Fix USB bus path; /proc/bus/usb is deprecated.
----
- pcap-usb-linux.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
 --- a/pcap-usb-linux.c
 +++ b/pcap-usb-linux.c

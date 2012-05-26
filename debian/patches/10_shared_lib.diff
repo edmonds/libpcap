@@ -1,13 +1,6 @@
 Debian-specific modifications to the upstream Makefile.in to
 build a shared library.
 
----
- Makefile.in    |   49 +++++++++++++++++++++++++++++++++++++++++--------
- aclocal.m4     |    4 ++--
- configure      |    4 ++--
- pcap-config.in |   10 ----------
- 4 files changed, 45 insertions(+), 22 deletions(-)
-
 --- a/Makefile.in
 +++ b/Makefile.in
 @@ -40,6 +40,14 @@
@@ -150,26 +143,6 @@ build a shared library.
  		    V_RPATH_OPT="-Wl,-rpath,"
  		    ;;
 @@ -325,7 +325,7 @@
- 		    #
- 		    # "cc" is GCC.
- 		    #
--		    V_CCOPT="$V_CCOPT -fpic"
-+		    V_CCOPT="$V_CCOPT"
- 		    V_SHLIB_CMD="\$(CC)"
- 		    V_SHLIB_OPT="-shared"
- 		    V_SONAME_OPT="-Wl,-soname,"
---- a/configure
-+++ b/configure
-@@ -3250,7 +3250,7 @@
- 			esac
- 			;;
- 		    esac
--		    V_CCOPT="$V_CCOPT $PIC_OPT"
-+		    V_CCOPT="$V_CCOPT"
- 		    V_SONAME_OPT="-Wl,-soname,"
- 		    V_RPATH_OPT="-Wl,-rpath,"
- 		    ;;
-@@ -3313,7 +3313,7 @@
  		    #
  		    # "cc" is GCC.
  		    #
