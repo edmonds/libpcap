@@ -62,6 +62,7 @@ Section: debug
 Priority: extra
 Architecture: any
 Depends: libpcap0.8 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
 Description: debugging symbols for libpcap0.8
  libpcap (Packet CAPture) provides a portable framework for low-level
  network monitoring.  Applications include network statistics collection,
