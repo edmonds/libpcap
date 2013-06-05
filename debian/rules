@@ -1,7 +1,13 @@
 #!/usr/bin/make -f
+export DH_VERBOSE=1
+
+DAG_DIR ?= /usr/local/src/dag
 
 %:
 	dh $@ --with autoreconf
+
+override_dh_auto_configure:
+	dh_auto_configure -- --with-dag=$(DAG_DIR) --with-pcap=dag
 
 override_dh_install:
 	dh_install --fail-missing
