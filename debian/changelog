@@ -1,3 +1,10 @@
+libpcap (1:1.4.0-1~dag+1) UNRELEASED; urgency=low
+
+  * Build with "--with-dag=$(DAG_DIR) --with-pcap=dag" added to the configure
+    arguments.  DAG_DIR defaults to /usr/local/src/dag.
+
+ -- Robert S. Edmonds <edmonds@debian.org>  Wed, 05 Jun 2013 14:50:37 -0400
+
 libpcap (1.4.0-1) unstable; urgency=low
 
   * New upstream release.
